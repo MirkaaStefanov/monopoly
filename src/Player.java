@@ -9,11 +9,11 @@ public class Player {
     private ArrayList<Property> properties;
 
 
-    public Player(String name, ArrayList<Property> properties) {
+    public Player(String name) {
         this.name = name;
         this.currentMoney = this.firstMoney;
         this.currentPosition = this.firstPosition;
-        this.properties = properties;
+        this.properties = null;
     }
 
     public String getName() {
@@ -65,6 +65,13 @@ public class Player {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", currentMoney=" + currentMoney +
+                ", currentPosition=" + currentPosition +
+                ", properties=" + properties +
+                '}';
+    }
 }

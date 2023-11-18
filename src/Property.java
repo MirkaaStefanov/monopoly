@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Property implements Square{
     private String name;
     private int position;
@@ -5,6 +7,8 @@ public class Property implements Square{
     private int priceForBuying;
     private int priceForRent;
     private boolean ifItsBought = false;
+
+    Scanner sc = new Scanner(System.in);
 
     public Property(String name, int priceForBuying, int priceForRent, int position) {
         this.name = name;
@@ -74,11 +78,32 @@ public class Property implements Square{
 
     @Override
     public void buy(Player player) {
-
+player.setCurrentMoney(player.getCurrentMoney()-this.priceForBuying);
     }
 
     @Override
     public void rent(int value) {
 
+    }
+public void firstPlay(Player player) {
+    System.out.println("You are on position "+this.position);
+    if(!ifItsBought){
+        System.out.println("Would you like to buy "+this.name+" yes/no");
+        String respond = sc.next();
+        if(respond.equalsIgnoreCase("Yes")){
+            buy(player);
+        }
+    }
+}
+    @Override
+    public String toString() {
+        return "Property{" +
+                "name='" + name + '\'' +
+                ", position=" + position +
+                ", owner=" + owner +
+                ", priceForBuying=" + priceForBuying +
+                ", priceForRent=" + priceForRent +
+                ", ifItsBought=" + ifItsBought +
+                '}';
     }
 }

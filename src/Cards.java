@@ -2,6 +2,11 @@ public class Cards implements Square {
     private int position;
     private String name;
 
+    public Cards(int position, String name) {
+        this.position = position;
+        this.name = name;
+    }
+
     @Override
     public int position() {
         return 0;
@@ -34,6 +39,11 @@ public class Cards implements Square {
 
     @Override
     public void rent(int value) {
+
+    }
+
+    @Override
+    public void firstPlay(Player player) {
 
     }
 }

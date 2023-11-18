@@ -42,4 +42,9 @@ public class Start implements Square {
 
     }
 
+    @Override
+    public void firstPlay(Player player) {
+
+    }
+
 }

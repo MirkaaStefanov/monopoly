@@ -7,4 +7,6 @@ public interface Square {
     void buy(Player player);
     void rent(int value);
 
+    void firstPlay(Player player);
+
 }

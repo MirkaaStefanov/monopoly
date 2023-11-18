@@ -41,4 +41,9 @@ public class Taxes implements Square{
     public void rent(int value) {
 
     }
+
+    @Override
+    public void firstPlay(Player player) {
+
+    }
 }
