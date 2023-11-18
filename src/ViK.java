@@ -38,7 +38,7 @@ public class ViK implements Square{
     }
 
     @Override
-    public void rent(int value) {
+    public void rent(Player player) {
 
     }
 

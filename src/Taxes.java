@@ -1,6 +1,31 @@
 public class Taxes implements Square{
     private int position;
     private String name;
+    private Player player;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     public Taxes(int position, String name) {
         this.position = position;
@@ -38,7 +63,7 @@ public class Taxes implements Square{
     }
 
     @Override
-    public void rent(int value) {
+    public void rent(Player player) {
 
     }
 

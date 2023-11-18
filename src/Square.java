@@ -5,7 +5,7 @@ public interface Square {
     boolean isItBought();
     int cost();
     void buy(Player player);
-    void rent(int value);
+    void rent(Player player);
 
     void firstPlay(Player player);
 

@@ -2,6 +2,40 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    public static void play() {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        Player[] players = players();
+        Square[] board = createBoard();
+
+        while (true) {
+
+            for (int i = 0; i < players.length; i++) {
+                if(!players[i].getIfPlayerIsInJail()){
+                    System.out.println("You ("+players[i].getName()+") are in Jail");
+                    continue;
+                }
+                System.out.print(players[i].getName()+", press enter to roll the dice");
+                sc.nextLine();
+                int dice1 = random.nextInt(6) + 1;
+                int dice2 = random.nextInt(6) + 1;
+
+                int sumOfDice = dice1 + dice2;
+                int boardPosition = players[i].getCurrentPosition() + sumOfDice;
+                players[i].setCurrentPosition(boardPosition);
+                System.out.println("You rolled "+dice1+" and "+dice2);
+
+                if(boardPosition>40){
+                    boardPosition=boardPosition-40;
+                    players[i].setCurrentMoney(players[i].getCurrentMoney()+200);
+                }
+
+//1= boardPosition
+                board[1].firstPlay(players[i]);
+
+            }
+        }
+    }
     public static Player[] players() {
         Scanner sc = new Scanner(System.in);
         int numOfPlayers;
@@ -21,10 +55,9 @@ public class Main {
         Player[] players = new Player[numOfPlayers];
         for (int i = 0; i < players.length; i++) {
             System.out.print("Enter name of player "+(i+1)+": ");
-            if(i>0) {
-                sc.nextLine();
-            }
+
             String name = sc.nextLine();
+
             players[i]= new Player(name);
         }
         return players;
@@ -39,25 +72,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        /*Player player = new Player("Mirkaan");
-        System.out.println(player);
-        Random random = new Random();
-        int zar1 = random.nextInt(6) + 1;
-        int zar2 = random.nextInt(6) + 1;
 
-        int sum = zar1 + zar2;
-        sum = 1;
-        int boardPosition = player.getCurrentPosition() + sum;
-
-        Player voidPlayer = player;
-        board[boardPosition].firstPlay(voidPlayer);
-
-        System.out.println(player);
-        System.out.println(board[1]);*/
-
-        Square[] board = createBoard();
-        players();
-
+       play();
 
     }
 }

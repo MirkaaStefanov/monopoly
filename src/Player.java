@@ -7,13 +7,29 @@ public class Player {
     private static int firstPosition = 0;
     private int currentPosition;
     private ArrayList<Property> properties;
-
+    private int numOfproperties = 0;
+    private boolean ifPlayerIsInJail = false;
 
     public Player(String name) {
         this.name = name;
         this.currentMoney = this.firstMoney;
         this.currentPosition = this.firstPosition;
-        this.properties = null;
+    }
+
+    public int getNumOfproperties() {
+        return numOfproperties;
+    }
+
+    public void setNumOfproperties(int numOfproperties) {
+        this.numOfproperties = numOfproperties;
+    }
+
+    public boolean getIfPlayerIsInJail() {
+        return ifPlayerIsInJail;
+    }
+
+    public void setIfPlayerIsInJail(boolean ifPlayerIsInJail) {
+        this.ifPlayerIsInJail = ifPlayerIsInJail;
     }
 
     public String getName() {
@@ -71,7 +87,7 @@ public class Player {
                 "name='" + name + '\'' +
                 ", currentMoney=" + currentMoney +
                 ", currentPosition=" + currentPosition +
-                ", properties=" + properties +
+                ", properties=" + numOfproperties+
                 '}';
     }
 }

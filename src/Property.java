@@ -81,11 +81,15 @@ public class Property implements Square {
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
         this.ifItsBought=true;
         this.owner = player;
+        System.out.println("You bought \""+this.name+ "\"");
     }
 
     @Override
-    public void rent(int value) {
-
+    public void rent(Player player) {
+        System.out.println("You pay rent to "+this.owner.getName()+", "+this.priceForRent+"$");
+        player.setCurrentMoney(player.getCurrentMoney()-this.priceForRent);
+        this.owner.setCurrentMoney(owner.getCurrentMoney()+this.priceForRent);
+        System.out.println("You paid the rent! ");
     }
 
     public void firstPlay(Player player) {
@@ -96,6 +100,8 @@ public class Property implements Square {
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player);
             }
+        }else{
+            rent(player);
         }
     }
 
