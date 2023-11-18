@@ -1,6 +1,11 @@
-public class Cards implements Square {
-    private int position;
-    private String name;
+public class Jail implements Square{
+   private int position;
+   private String name;
+
+    public Jail(int position, String name) {
+        this.position = position;
+        this.name = name;
+    }
 
     @Override
     public int position() {

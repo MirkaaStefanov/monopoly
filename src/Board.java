@@ -27,6 +27,8 @@ private Square makeSquare(int position) {
             return null;
     }
 }
+
+
 private Square go(int position) {
         return new Start(position,"GO");
 }
@@ -35,6 +37,120 @@ private Square slivnica(int position){
         int cost = 60;
         return new Property("Slivnica",cost,rent,position);
 }
+private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
+    private Square ....(int position) {
+
+    }
 
 
 }
