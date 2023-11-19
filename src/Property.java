@@ -89,14 +89,19 @@ public class Property implements Square, Propertiable {
     @Override
     public void firstPlay(Player player, Player[]players, Square[] board) {
         if (!ifItsBought) {
-            System.out.println("Would you like to buy " + this.name + " (yes/no)");
+            System.out.println("Would you like to buy " + this.name +"price "+this.priceForBuying+ "$ (yes/no)");
             String respond = sc.next();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player);
             }
         } else if(ifItsBought && player==owner && ownerEntered==0){
            ownerEntered=1;
-            System.out.println("This is yours");
+            System.out.println("This is yours, would you like to pay "+(this.priceForBuying-20)+", and the rent will be "+this.priceForBuying+"$");
+            String answer = sc.next();
+            if(answer.equalsIgnoreCase("Yes")){
+                setPriceForRent(getPriceForBuying());
+                player.setCurrentMoney(player.getCurrentMoney()-(this.priceForBuying-20));
+            }
         }else{
             rent(player);
         }

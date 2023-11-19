@@ -63,6 +63,7 @@ public class Main {
 
     public static Player[] players() {
         Scanner sc = new Scanner(System.in);
+        System.out.println();
         int numOfPlayers;
         System.out.print("How many players will play (2-4): ");
         while (true) {
