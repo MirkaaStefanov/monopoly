@@ -143,20 +143,50 @@ public class Cards implements Square {
 //                    }
                     break;
                 case 5:
+                    System.out.println("Go to gara Sofia");
+                    if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 6) {
+                        player.setCurrentPosition(6);
+                    } else if (player.getCurrentPosition() <= 0 && player.getCurrentPosition() > 6) {
+                        player.setCurrentPosition(6);
+                        player.setCurrentMoney(player.getCurrentMoney() + 200);
+                    } else {
+                        System.out.println("You are at gara Sofia");
+                    }
                     break;
                 case 6:
+                    System.out.println("Maturity of your home loan");
+                    player.setCurrentMoney(player.getCurrentMoney()+150);
                     break;
                 case 7:
+                    System.out.println("Go back 3 spaces");
+                    player.setCurrentPosition(player.getCurrentPosition()-3);
                     break;
                 case 8:
+                    System.out.println("Speeding ticket. It costs: 15$");
+                    player.setCurrentMoney(player.getCurrentMoney()-15);
                     break;
                 case 9:
+                    System.out.println("You go straight to jail");
+                    player.setIfPlayerIsInJail(true);
                     break;
                 case 10:
+                    System.out.println("Go to start and earned 200$");
+                    player.setCurrentMoney(player.getCurrentMoney()+200);
                     break;
                 case 11:
+                    System.out.println("The bank sends you a dividend of 50$");
+                    player.setCurrentMoney(player.getCurrentMoney()+50);
                     break;
                 case 12:
+                    System.out.println("Go to ulica Oborishte");
+                    if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 20) {
+                        player.setCurrentPosition(20);
+                    } else if (player.getCurrentPosition() <= 0 && player.getCurrentPosition() > 20) {
+                        player.setCurrentPosition(20);
+                        player.setCurrentMoney(player.getCurrentMoney() + 200);
+                    } else {
+                        System.out.println("You are at ulica Oborishte");
+                    }
                     break;
                 case 13:
                     break;
