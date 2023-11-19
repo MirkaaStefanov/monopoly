@@ -111,17 +111,20 @@ public class Cards implements Square {
                 case 1:
                     System.out.println("Go to Boqna");
                     player.setCurrentPosition(39);
+                    board[39].firstPlay(player,players,board);
                     break;
                 case 2:
                     System.out.println("You escaped jail without paying.");
                     player.setIfPlayerIsInJail(false);
                     break;
                 case 3:
-                    System.out.println("Go to ploshtat Makedoia");
+                    System.out.println("Go to ploshtat Makedonia");
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 12) {
                         player.setCurrentPosition(11);
-                    } else if (player.getCurrentPosition() <= 0 && player.getCurrentPosition() > 12) {
+                        board[11].firstPlay(player,players,board);
+                    } else if (player.getCurrentPosition() > 12) {
                         player.setCurrentPosition(11);
+                        board[11].firstPlay(player,players,board);
                         player.setCurrentMoney(player.getCurrentMoney() + 200);
                     } else {
                         System.out.println("You are at plushtat Makedonia");
@@ -142,7 +145,7 @@ public class Cards implements Square {
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 6) {
                         player.setCurrentPosition(5);
                         board[5].firstPlay(player,players,board);
-                    } else if (player.getCurrentPosition() <= 0 && player.getCurrentPosition() > 6) {
+                    } else if (player.getCurrentPosition() > 6) {
                         player.setCurrentPosition(5);
                         board[5].firstPlay(player,players,board);
                         player.setCurrentMoney(player.getCurrentMoney() + 200);
@@ -182,7 +185,7 @@ public class Cards implements Square {
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 20) {
                         player.setCurrentPosition(19);
                         board[19].firstPlay(player,players,board);
-                    } else if (player.getCurrentPosition() <= 0 && player.getCurrentPosition() > 20) {
+                    } else if (player.getCurrentPosition() > 20) {
                         player.setCurrentPosition(19);
                         board[19].firstPlay(player,players,board);
                         player.setCurrentMoney(player.getCurrentMoney() + 200);

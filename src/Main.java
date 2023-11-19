@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,19 +8,25 @@ public class Main {
         Random random = new Random();
         Player[] players = players();
         Square[] board = createBoard();
-
+        int counter = 0;
         while (true) {
-
+            counter++;
+            sc.nextLine();
+            printState(players);
             for (int i = 0; i < players.length; i++) {
+                if (counter > 0) {
+                    System.out.println();
+                }
                 if (players[i].getIfPlayerIsInJail()) {
                     if (players[i].getPaidToEscapeJail()) {
-                        System.out.println("You paid to escape but you still miss a move");
+                        System.out.println("You (" + players[i].getName() + ") paid to escape but you still miss a move");
+                        players[i].setIfPlayerIsInJail(false);
                         continue;
                     }
                     System.out.println("You (" + players[i].getName() + ") are in Jail");
-                    System.out.println("After " + (3 - players[i].getStayInJail()) + " moves, you will be able to roll the dice");
                     System.out.println("But, If you role two same dice you are gonna escape the jail");
                     System.out.print("press enter to roll the dice");
+
                     sc.nextLine();
                     int diceInJail1 = random.nextInt(6) + 1;
                     int diceInJail2 = random.nextInt(6) + 1;
@@ -37,6 +44,8 @@ public class Main {
                     }
                 }
                 System.out.print(players[i].getName() + ", press enter to roll the dice");
+
+                sc.nextLine();
                 sc.nextLine();
                 int dice1 = random.nextInt(6) + 1;
                 int dice2 = random.nextInt(6) + 1;
@@ -47,6 +56,7 @@ public class Main {
                     boardPosition = boardPosition - 40;
                     if (players[i].getDoNotGet200FromStart() == false) {
                         players[i].setCurrentMoney(players[i].getCurrentMoney() + 200);
+                        System.out.println("You (" + players[i].getName() + ") receive 200$ because you went through the START");
                     }
                 }
                 players[i].setCurrentPosition(boardPosition);
@@ -55,7 +65,6 @@ public class Main {
 
 
                 board[boardPosition].firstPlay(players[i], players, board);
-
             }
         }
     }
@@ -130,6 +139,35 @@ public class Main {
         board[38] = new Taxes(38, "Super danuk");
         board[39] = new Property("Boqna", 400, 200, 39);
         return board;
+    }
+
+    private static void printState(Player[] players) {
+        int counter = 1;
+        for (Player player : players) {
+            System.out.println("--------------------------------------------------");
+            System.out.println("Player " + counter++);
+            System.out.printf("%-10s%40s%n", "Name", player.getName());
+            System.out.printf("%-10s%40s%n", "Money", player.getCurrentMoney());
+            System.out.printf("%-10s%40s%n", "Position", player.getCurrentPosition());
+            System.out.printf("%-10s", "Properties");
+            int owned = player.getNumOfproperties();
+
+            boolean first = true;
+            if (first)
+                System.out.printf("%40s%n", owned);
+            else
+                System.out.printf("%50s%n", owned);
+            first = false;
+
+
+            if (first)
+                System.out.printf("%40s%n", "none");
+
+            if (player.getIfPlayerIsInJail())
+                System.out.println("In jail");
+
+            System.out.println("--------------------------------------------------");
+        }
     }
 
     public static void main(String[] args) {
