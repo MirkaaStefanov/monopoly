@@ -55,19 +55,26 @@ public class Cards implements Square {
                     player.setCurrentMoney(player.getCurrentMoney() + 20);
                     break;
                 case 4:
-                    System.out.println("you go straight to jail and when you go through the start you don't get 200$");
+                    System.out.println("You go straight to jail and when you go through the start you don't get 200$");
                     player.setDoNotGet200FromStart(true);
                     break;
                 case 5:
-                    System.out.println("pay 100$ hospital fees");
+                    System.out.println("Pay 100$ hospital fees");
                     player.setCurrentMoney(player.getCurrentMoney()-100);
                     break;
                 case 6:
-                    System.out.println("you receive a consultant fee 25$");
-                    player.setCurrentMoney(player.getCurrentMoney()-25);
+                    System.out.println("You receive a consultant fee 25$");
+                    player.setCurrentMoney(player.getCurrentMoney()+25);
                     break;
                 case 7:
-
+                    System.out.println("You have a birthday and receive 10$ from every player");
+                    for (int i = 0; i < pl.length; i++) {
+                        int recievenMoney = 10*(pl.length-1);
+                        if(pl[i]!=player){
+                            player.setCurrentMoney(player.getCurrentMoney()+recievenMoney);
+                            pl[i].setCurrentMoney(pl[i].getCurrentMoney()-10);
+                        }
+                    }
                     break;
                 case 8:
                     break;
@@ -97,7 +104,7 @@ public class Cards implements Square {
                     break;
                 case 2:
                     System.out.println("You escaped jail without paying.");
-                    player.setCurrentPosition(getPosition() + 1);
+                    player.setIfPlayerIsInJail(false);
                     break;
                 case 3:
                     System.out.println("Go to ploshtat Makedoia");
