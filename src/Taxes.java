@@ -31,7 +31,6 @@ public class Taxes implements Square {
         this.position = position;
         this.name = name;
     }
-
     @Override
     public void firstPlay(Player player) {
         if (this.name.equalsIgnoreCase("taxProfit")) {

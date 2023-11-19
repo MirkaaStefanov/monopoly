@@ -6,8 +6,8 @@ public class Player {
     private int currentMoney;
     private static int firstPosition = 0;
     private int currentPosition;
-    private ArrayList<Property> properties;
-    private int numOfproperties = 0;
+    public Property[] properties;
+    private int numOfProperties = 0;
     private boolean ifPlayerIsInJail = false;
     private int stayInJail;
 
@@ -27,11 +27,11 @@ public class Player {
     }
 
     public int getNumOfproperties() {
-        return numOfproperties;
+        return numOfProperties;
     }
 
     public void setNumOfproperties(int numOfproperties) {
-        this.numOfproperties = numOfproperties;
+        this.numOfProperties = numOfproperties;
     }
 
     public boolean getIfPlayerIsInJail() {
@@ -82,13 +82,7 @@ public class Player {
         this.currentPosition = currentPosition;
     }
 
-    public ArrayList<Property> getProperties() {
-        return properties;
-    }
 
-    public void setProperties(ArrayList<Property> properties) {
-        this.properties = properties;
-    }
 
 
     @Override
@@ -97,7 +91,7 @@ public class Player {
                 "name='" + name + '\'' +
                 ", currentMoney=" + currentMoney +
                 ", currentPosition=" + currentPosition +
-                ", properties=" + numOfproperties+
+                ", properties=" + numOfProperties+
                 '}';
     }
 }

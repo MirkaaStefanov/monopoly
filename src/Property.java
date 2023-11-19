@@ -57,6 +57,8 @@ public class Property implements Square, Propertiable {
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
         this.ifItsBought = true;
         this.owner = player;
+        player.properties[player.getNumOfproperties()]=new Property(this.name, this.priceForBuying, this.priceForRent, this.position);
+        player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");
     }
 
@@ -73,11 +75,6 @@ public class Property implements Square, Propertiable {
             }else{
                 System.out.println("You are lucky! The owner is in jail and you shouldn't pay rent");
             }
-        } else {
-            if (ownerEntered == 0) {
-
-                ownerEntered = 1;
-            }
         }
     }
 
@@ -88,7 +85,10 @@ public class Property implements Square, Propertiable {
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player);
             }
-        } else {
+        } else if(ifItsBought && player==owner && ownerEntered==0){
+           ownerEntered=1;
+            System.out.println("This is yours");
+        }else{
             rent(player);
         }
     }

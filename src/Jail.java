@@ -39,6 +39,7 @@ public class Jail implements Square {
         Scanner sc = new Scanner(System.in);
         player.setIfPlayerIsInJail(true);
         player.setStayInJail(0);
+        player.setCurrentPosition(10);
         System.out.println("Do you want to pay 50$ to escape jail (yes/no)");
         String answer = sc.next();
         if (answer.equalsIgnoreCase("yes")) {
