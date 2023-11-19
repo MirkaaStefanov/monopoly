@@ -6,16 +6,24 @@ public class Player {
     private int currentMoney;
     private static int firstPosition = 0;
     private int currentPosition;
-    public Property[] properties;
-    private int numOfProperties = 0;
+    public ArrayList<Property> properties;
+    private int currentNumOfProperties ;
+    private int numOfPropertiesAtStart = 0;
     private boolean ifPlayerIsInJail = false;
     private int stayInJail;
+    private boolean doNotGet200FromStart= false;
 
 
     public Player(String name) {
         this.name = name;
         this.currentMoney = this.firstMoney;
         this.currentPosition = this.firstPosition;
+        this.currentNumOfProperties =this.numOfPropertiesAtStart;
+        this.properties = makePropertyArrayList();
+    }
+    public ArrayList<Property> makePropertyArrayList () {
+        ArrayList<Property> propertiesOfPlayer = new ArrayList<>();
+        return propertiesOfPlayer;
     }
 
     public int getStayInJail() {
@@ -27,11 +35,11 @@ public class Player {
     }
 
     public int getNumOfproperties() {
-        return numOfProperties;
+        return currentNumOfProperties;
     }
 
     public void setNumOfproperties(int numOfproperties) {
-        this.numOfProperties = numOfproperties;
+        this.currentNumOfProperties = numOfproperties;
     }
 
     public boolean getIfPlayerIsInJail() {
@@ -82,8 +90,13 @@ public class Player {
         this.currentPosition = currentPosition;
     }
 
+    public boolean getDoNotGet200FromStart() {
+        return doNotGet200FromStart;
+    }
 
-
+    public void setDoNotGet200FromStart(boolean doNotGet200FromStart) {
+        this.doNotGet200FromStart = doNotGet200FromStart;
+    }
 
     @Override
     public String toString() {
@@ -91,7 +104,7 @@ public class Player {
                 "name='" + name + '\'' +
                 ", currentMoney=" + currentMoney +
                 ", currentPosition=" + currentPosition +
-                ", properties=" + numOfProperties+
+                ", properties=" + currentNumOfProperties+
                 '}';
     }
 }

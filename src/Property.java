@@ -54,13 +54,12 @@ public class Property implements Square, Propertiable {
     public String getName() {
         return name;
     }
-
     @Override
     public void buy(Player player) {
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
         this.ifItsBought = true;
         this.owner = player;
-        player.properties[player.getNumOfproperties()]=new Property(this.name, this.priceForBuying, this.priceForRent, this.position);
+        player.makePropertyArrayList().add(new Property(this.name, this.priceForBuying, this.priceForRent, this.position));
         player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");
     }

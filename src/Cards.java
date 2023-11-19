@@ -37,6 +37,7 @@ public class Cards implements Square {
 
     @Override
     public void firstPlay(Player player) {
+        Player[] pl =Main.players();
         Random cardsRandom = new Random();
         if(this.name.equalsIgnoreCase("Obshtestven trezor")){
             int obshtestvenTrezorRandom = cardsRandom.nextInt(16)+1;
@@ -54,12 +55,19 @@ public class Cards implements Square {
                     player.setCurrentMoney(player.getCurrentMoney()+20);
                     break;
                 case 4:
+                    System.out.println("you go straight to jail and when you go through the start you don't get 200$");
+                    player.setDoNotGet200FromStart(true);
                     break;
                 case 5:
+                    System.out.println("pay 100$ hospital fees");
+                    player.setCurrentMoney(player.getCurrentMoney()-100);
                     break;
                 case 6:
+                    System.out.println("you receive a consultant fee 25$");
+                    player.setCurrentMoney(player.getCurrentMoney()-25);
                     break;
                 case 7:
+
                     break;
                 case 8:
                     break;

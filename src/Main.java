@@ -40,7 +40,9 @@ public class Main {
                 int boardPosition = players[i].getCurrentPosition() + sumOfDice;
                 if (boardPosition > 40) {
                     boardPosition = boardPosition - 40;
-                    players[i].setCurrentMoney(players[i].getCurrentMoney() + 200);
+                    if(players[i].getDoNotGet200FromStart()==false) {
+                        players[i].setCurrentMoney(players[i].getCurrentMoney() + 200);
+                    }
                 }
                 players[i].setCurrentPosition(boardPosition);
                 System.out.println("You rolled " + dice1 + " and " + dice2);
