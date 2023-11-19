@@ -1,4 +1,4 @@
-public class Taxes implements Square{
+public class Taxes implements Square {
     private int position;
     private String name;
     private Player player;
@@ -33,42 +33,13 @@ public class Taxes implements Square{
     }
 
     @Override
-    public int position() {
-        return 0;
-    }
-
-    @Override
-    public String name() {
-        return null;
-    }
-
-    @Override
-    public boolean isItBoughtable() {
-        return false;
-    }
-
-    @Override
-    public boolean isItBought() {
-        return false;
-    }
-
-    @Override
-    public int cost() {
-        return 0;
-    }
-
-    @Override
-    public void buy(Player player) {
-
-    }
-
-    @Override
-    public void rent(Player player) {
-
-    }
-
-    @Override
     public void firstPlay(Player player) {
-
+        if (this.name.equalsIgnoreCase("taxProfit")) {
+            player.setCurrentMoney(player.getCurrentMoney() - 200);
+            System.out.println("You paid Tax Profit 200$");
+        }else{
+            player.setCurrentMoney(player.getCurrentMoney() - 100);
+            System.out.println("You paid super Tax 100$");
+        }
     }
 }

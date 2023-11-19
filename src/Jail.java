@@ -1,6 +1,8 @@
-public class Jail implements Square{
-   private int position;
-   private String name;
+import java.util.Scanner;
+
+public class Jail implements Square {
+    private int position;
+    private String name;
     private Player player;
 
     public Jail(int position, String name) {
@@ -33,42 +35,18 @@ public class Jail implements Square{
     }
 
     @Override
-    public int position() {
-        return 0;
-    }
-
-    @Override
-    public String name() {
-        return null;
-    }
-
-    @Override
-    public boolean isItBoughtable() {
-        return false;
-    }
-
-    @Override
-    public boolean isItBought() {
-        return false;
-    }
-
-    @Override
-    public int cost() {
-        return 0;
-    }
-
-    @Override
-    public void buy(Player player) {
-
-    }
-
-    @Override
-    public void rent(Player player) {
-
-    }
-
-    @Override
     public void firstPlay(Player player) {
-
+        Scanner sc = new Scanner(System.in);
+        player.setIfPlayerIsInJail(true);
+        player.setStayInJail(0);
+        System.out.println("Do you want to pay 50$ to escape jail (yes/no)");
+        String answer = sc.next();
+        if (answer.equalsIgnoreCase("yes")) {
+            player.setStayInJail(2);
+            player.setCurrentMoney(player.getCurrentMoney() - 50);
+            System.out.println("You paid 50$, but you still miss a move");
+        } else {
+            System.out.println("You are gonna miss 3 moves");
+        }
     }
 }

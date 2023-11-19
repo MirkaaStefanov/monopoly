@@ -9,11 +9,21 @@ public class Player {
     private ArrayList<Property> properties;
     private int numOfproperties = 0;
     private boolean ifPlayerIsInJail = false;
+    private int stayInJail;
+
 
     public Player(String name) {
         this.name = name;
         this.currentMoney = this.firstMoney;
         this.currentPosition = this.firstPosition;
+    }
+
+    public int getStayInJail() {
+        return stayInJail;
+    }
+
+    public void setStayInJail(int stayInJail) {
+        this.stayInJail = stayInJail;
     }
 
     public int getNumOfproperties() {

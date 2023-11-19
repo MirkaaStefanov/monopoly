@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-public class Property implements Square {
+public class Property implements Square, Propertiable {
     private String name;
     private int position;
     private Player owner;
     private int priceForBuying;
     private int priceForRent;
     private boolean ifItsBought = false;
-
+    private int ownerEntered = 0;
     Scanner sc = new Scanner(System.in);
 
     public Property(String name, int priceForBuying, int priceForRent, int position) {
@@ -51,56 +51,44 @@ public class Property implements Square {
     }
 
 
-    @Override
-    public int position() {
-        return 0;
-    }
-
-    @Override
-    public String name() {
-        return null;
-    }
-
-    @Override
-    public boolean isItBoughtable() {
-        return false;
-    }
-
-    @Override
-    public boolean isItBought() {
-        return false;
-    }
-
-    @Override
-    public int cost() {
-        return 0;
-    }
 
     @Override
     public void buy(Player player) {
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
-        this.ifItsBought=true;
+        this.ifItsBought = true;
         this.owner = player;
-        System.out.println("You bought \""+this.name+ "\"");
+        System.out.println("You bought \"" + this.name + "\"");
     }
 
     @Override
     public void rent(Player player) {
-        System.out.println("You pay rent to "+this.owner.getName()+", "+this.priceForRent+"$");
-        player.setCurrentMoney(player.getCurrentMoney()-this.priceForRent);
-        this.owner.setCurrentMoney(owner.getCurrentMoney()+this.priceForRent);
-        System.out.println("You paid the rent! ");
+
+        if (!(player == this.owner)) {
+
+            if (!this.owner.getIfPlayerIsInJail()) {
+                System.out.println("You pay rent to " + this.owner.getName() + ", " + this.priceForRent + "$");
+                player.setCurrentMoney(player.getCurrentMoney() - this.priceForRent);
+                this.owner.setCurrentMoney(owner.getCurrentMoney() + this.priceForRent);
+                System.out.println("You paid the rent! ");
+            }else{
+                System.out.println("You are lucky! The owner is in jail and you shouldn't pay rent");
+            }
+        } else {
+            if (ownerEntered == 0) {
+
+                ownerEntered = 1;
+            }
+        }
     }
 
     public void firstPlay(Player player) {
-        System.out.println("You are on position " + this.position);
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name + " (yes/no)");
             String respond = sc.next();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player);
             }
-        }else{
+        } else {
             rent(player);
         }
     }
