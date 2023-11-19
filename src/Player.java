@@ -12,6 +12,7 @@ public class Player {
     private boolean ifPlayerIsInJail = false;
     private int stayInJail;
     private boolean doNotGet200FromStart= false;
+    private boolean moveToTheNearest = false;
 
 
     public Player(String name) {
@@ -24,6 +25,14 @@ public class Player {
     public ArrayList<Property> makePropertyArrayList () {
         ArrayList<Property> propertiesOfPlayer = new ArrayList<>();
         return propertiesOfPlayer;
+    }
+
+    public boolean getMoveToTheNearest() {
+        return moveToTheNearest;
+    }
+
+    public void setMoveToTheNearest(boolean moveToTheNearest) {
+        this.moveToTheNearest = moveToTheNearest;
     }
 
     public int getStayInJail() {

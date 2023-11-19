@@ -69,10 +69,16 @@ public class Property implements Square, Propertiable {
 
         if (!(player == this.owner)) {
 
-            if (!this.owner.getIfPlayerIsInJail()) {
+            if (this.owner.getIfPlayerIsInJail()==false) {
                 System.out.println("You pay rent to " + this.owner.getName() + ", " + this.priceForRent + "$");
-                player.setCurrentMoney(player.getCurrentMoney() - this.priceForRent);
-                this.owner.setCurrentMoney(owner.getCurrentMoney() + this.priceForRent);
+                if(player.getMoveToTheNearest()==true){
+                    player.setCurrentMoney(player.getCurrentMoney() - (this.priceForRent)*2);
+                    this.owner.setCurrentMoney(owner.getCurrentMoney() + (this.priceForRent)*2);
+                    player.setMoveToTheNearest(false);
+                }else {
+                    player.setCurrentMoney(player.getCurrentMoney() - this.priceForRent);
+                    this.owner.setCurrentMoney(owner.getCurrentMoney() + this.priceForRent);
+                }
                 System.out.println("You paid the rent! ");
             }else{
                 System.out.println("You are lucky! The owner is in jail and you shouldn't pay rent");
