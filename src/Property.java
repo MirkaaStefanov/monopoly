@@ -87,6 +87,12 @@ public class Property implements Square, Propertiable {
     }
 
     @Override
+    public void sell(Player player) {
+
+    }
+
+
+    @Override
     public void firstPlay(Player player, Player[]players, Square[] board) {
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name +"price "+this.priceForBuying+ "$ (yes/no)");

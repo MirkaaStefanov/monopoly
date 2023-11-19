@@ -108,4 +108,9 @@ public class Gara implements Square, Propertiable{
             }
         }
     }
+
+    @Override
+    public void sell(Player player) {
+
+    }
 }

@@ -12,7 +12,7 @@ public class Main {
 
             for (int i = 0; i < players.length; i++) {
                 if (players[i].getIfPlayerIsInJail()) {
-                    if(players[i].getPaidToEscapeJail()){
+                    if (players[i].getPaidToEscapeJail()) {
                         System.out.println("You paid to escape but you still miss a move");
                         continue;
                     }
@@ -45,17 +45,16 @@ public class Main {
                 int boardPosition = players[i].getCurrentPosition() + sumOfDice;
                 if (boardPosition > 40) {
                     boardPosition = boardPosition - 40;
-                    if(players[i].getDoNotGet200FromStart()==false) {
+                    if (players[i].getDoNotGet200FromStart() == false) {
                         players[i].setCurrentMoney(players[i].getCurrentMoney() + 200);
                     }
                 }
                 players[i].setCurrentPosition(boardPosition);
                 System.out.println("You rolled " + dice1 + " and " + dice2);
-                System.out.println("Your position is " + players[i].getCurrentPosition()+", you are in square: "+board[boardPosition].getName());
+                System.out.println("Your position is " + players[i].getCurrentPosition() + ", you are in square: " + board[boardPosition].getName());
 
 
-
-                board[boardPosition].firstPlay(players[i],players,board);
+                board[boardPosition].firstPlay(players[i], players, board);
 
             }
         }
@@ -63,7 +62,6 @@ public class Main {
 
     public static Player[] players() {
         Scanner sc = new Scanner(System.in);
-        System.out.println();
         int numOfPlayers;
         System.out.print("How many players will play (2-4): ");
         while (true) {
@@ -81,18 +79,13 @@ public class Main {
         Player[] players = new Player[numOfPlayers];
         for (int i = 0; i < players.length; i++) {
             System.out.print("Enter name of player " + (i + 1) + ": ");
-            if (sc.hasNextInt()) {
-                System.out.println("Error: Please enter a valid name, not a number.");
-                sc.next();
-                i--;
-                continue;
-            }
 
             String name = sc.nextLine();
             players[i] = new Player(name);
         }
         return players;
     }
+
 
     public static Square[] createBoard() {
         Square[] board = new Square[40];
@@ -115,27 +108,27 @@ public class Main {
         board[16] = new Property("Bulevard Evlogi Georgiev", 180, 90, 16);
         board[17] = new Cards(17, "Obshtestven trezor");
         board[18] = new Property("Orlov most", 180, 90, 18);
-        board[19]=new Property("Bulevard Bulgaria",200,100,19);
-        board[20]=new Parking(20,"Free parking");
-        board[21]=new Property("Ulica San Stefano",220,110,21);
-        board[22]=new Cards(22,"Luck");
-        board[23]=new Property("Ulica Shipka",220,110,23);
-        board[24]=new Property("Ulica Oborishte",240,120,24);
-        board[25]=new Gara("Gara Varna", 100, 40, 25);
-        board[26]=new Property("Bulevard Dondukov",260,130,26);
-        board[27]=new Property("Bulevard Patriarh Evtimiy",260,130,27);
-        board[28]=new ViK(28,"VIK");
-        board[29]=new Property("Bulevard Vasil Levski",280,140,29);
-        board[30]=new Jail(30,"Go to jail!");
-        board[31]=new Property("Ulica G.S.Rakovski",300,150,31);
-        board[32] =new Property("Ulica Graf Ignatiev",300,150,32);
-        board[33]=new Cards(33,"Obshtestven trezor");
-        board[34]=new Property("Bulevard Car Osvoboditel",320,160,34);
-        board[35]=new Gara("Gara Burgas", 100, 40,35);
-        board[36]=new Cards(36,"Luck");
-        board[37]=new Property("Bulevard Vitosha",350,175,37);
-        board[38]=new Taxes(38,"Super danuk");
-        board[39]=new Property("Boqna",400,200,39);
+        board[19] = new Property("Bulevard Bulgaria", 200, 100, 19);
+        board[20] = new Parking(20, "Free parking");
+        board[21] = new Property("Ulica San Stefano", 220, 110, 21);
+        board[22] = new Cards(22, "Luck");
+        board[23] = new Property("Ulica Shipka", 220, 110, 23);
+        board[24] = new Property("Ulica Oborishte", 240, 120, 24);
+        board[25] = new Gara("Gara Varna", 100, 40, 25);
+        board[26] = new Property("Bulevard Dondukov", 260, 130, 26);
+        board[27] = new Property("Bulevard Patriarh Evtimiy", 260, 130, 27);
+        board[28] = new ViK(28, "VIK");
+        board[29] = new Property("Bulevard Vasil Levski", 280, 140, 29);
+        board[30] = new Jail(30, "Go to jail!");
+        board[31] = new Property("Ulica G.S.Rakovski", 300, 150, 31);
+        board[32] = new Property("Ulica Graf Ignatiev", 300, 150, 32);
+        board[33] = new Cards(33, "Obshtestven trezor");
+        board[34] = new Property("Bulevard Car Osvoboditel", 320, 160, 34);
+        board[35] = new Gara("Gara Burgas", 100, 40, 35);
+        board[36] = new Cards(36, "Luck");
+        board[37] = new Property("Bulevard Vitosha", 350, 175, 37);
+        board[38] = new Taxes(38, "Super danuk");
+        board[39] = new Property("Boqna", 400, 200, 39);
         return board;
     }
 
