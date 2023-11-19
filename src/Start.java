@@ -33,7 +33,7 @@ public class Start implements Square {
     }
 
     @Override
-    public void firstPlay(Player player) {
+    public void firstPlay(Player player, Player[]players, Square[] board) {
         System.out.println("You are at start");
     }
 
