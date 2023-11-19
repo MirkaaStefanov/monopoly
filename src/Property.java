@@ -50,7 +50,10 @@ public class Property implements Square, Propertiable {
         this.ifItsBought = ifItsRent;
     }
 
-
+    @Override
+    public String getName() {
+        return name;
+    }
 
     @Override
     public void buy(Player player) {
@@ -77,6 +80,7 @@ public class Property implements Square, Propertiable {
             }
         }
     }
+
 
     public void firstPlay(Player player) {
         if (!ifItsBought) {

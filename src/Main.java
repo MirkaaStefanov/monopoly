@@ -38,17 +38,16 @@ public class Main {
 
                 int sumOfDice = dice1 + dice2;
                 int boardPosition = players[i].getCurrentPosition() + sumOfDice;
-                players[i].setCurrentPosition(boardPosition);
-                System.out.println("You rolled " + dice1 + " and " + dice2);
-                System.out.println("Your position is " + players[i].getCurrentPosition());
-
                 if (boardPosition > 40) {
                     boardPosition = boardPosition - 40;
                     players[i].setCurrentMoney(players[i].getCurrentMoney() + 200);
                 }
+                players[i].setCurrentPosition(boardPosition);
+                System.out.println("You rolled " + dice1 + " and " + dice2);
+                System.out.println("Your position is " + players[i].getCurrentPosition()+", you are in square: "+board[boardPosition].getName());
 
-//1= boardPosition
-                board[1].firstPlay(players[i]);
+
+                board[boardPosition].firstPlay(players[i]);
 
             }
         }
