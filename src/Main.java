@@ -87,7 +87,7 @@ public class Main {
         board[1] = new Property("Bulevard Botevgradsko Shose", 60, 30, 1);
         board[2] = new Cards(2, "Obshtestven trezor");
         board[3] = new Property("Bulevard Carigradsko Shose", 60, 30, 3);
-        board[4] = new Cards(4, "Danuk pechalba");
+        board[4] = new Taxes(4, "Danuk pechalba");
         board[5] = new Cards(5, "Gara Sofia");
         board[6] = new Property("Ulica Opulchenska", 100, 50, 6);
         board[7] = new Cards(7, "Luck");
@@ -95,7 +95,7 @@ public class Main {
         board[9] = new Property("Lunov most", 120, 60, 9);
         board[10] = new Jail(10, "Na Svijdane");
         board[11] = new Property("Ploshtad Makedoniq", 140, 70, 11);
-        board[12] = new Cards(12, "NEK");
+        board[12] = new NEK(12, "NEK");
         board[13] = new Property("Ulica Pirotska", 140, 70, 13);
         board[14] = new Property("Bulevard Hristo Botev", 160, 80, 14);
         board[15] = new Cards(15, "Gara Plovdiv");

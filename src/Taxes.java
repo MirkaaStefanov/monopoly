@@ -33,9 +33,9 @@ public class Taxes implements Square {
     }
     @Override
     public void firstPlay(Player player) {
-        if (this.name.equalsIgnoreCase("taxProfit")) {
+        if (this.name.equalsIgnoreCase("Danuk pechalba")) {
             player.setCurrentMoney(player.getCurrentMoney() - 200);
-            System.out.println("You paid Tax Profit 200$");
+            System.out.println("You paid Danuk pechalba(Tax Profit) 200$");
         }else{
             player.setCurrentMoney(player.getCurrentMoney() - 100);
             System.out.println("You paid super Tax 100$");
