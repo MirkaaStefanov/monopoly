@@ -25,7 +25,7 @@ public class ViK implements Square{
     }
 
     @Override
-    public void firstPlay(Player player) {
+    public void firstPlay(Player player, Player[]players, Square[] board) {
         player.setCurrentMoney(player.getCurrentMoney() - 150);
         System.out.println("You paid Tax ViK 150$");
     }

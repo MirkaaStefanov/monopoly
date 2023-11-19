@@ -34,7 +34,7 @@ public class NEK implements Square{
 
 
     @Override
-    public void firstPlay(Player player) {
+    public void firstPlay(Player player, Player[]players, Square[] board) {
         player.setCurrentMoney(player.getCurrentMoney() - 150);
         System.out.println("You paid Tax NEK 150$");
     }

@@ -12,8 +12,13 @@ public class Main {
 
             for (int i = 0; i < players.length; i++) {
                 if (players[i].getIfPlayerIsInJail()) {
+                    if(players[i].getPaidToEscapeJail()){
+                        System.out.println("You paid to escape but you still miss a move");
+                        continue;
+                    }
                     System.out.println("You (" + players[i].getName() + ") are in Jail");
-                    System.out.println("If you role two same dice you are gonna escape the jail");
+                    System.out.println("After " + (3 - players[i].getStayInJail()) + " moves, you will be able to roll the dice");
+                    System.out.println("But, If you role two same dice you are gonna escape the jail");
                     System.out.print("press enter to roll the dice");
                     sc.nextLine();
                     int diceInJail1 = random.nextInt(6) + 1;
@@ -49,7 +54,8 @@ public class Main {
                 System.out.println("Your position is " + players[i].getCurrentPosition()+", you are in square: "+board[boardPosition].getName());
 
 
-                board[boardPosition].firstPlay(players[i]);
+
+                board[boardPosition].firstPlay(players[i],players,board);
 
             }
         }
@@ -89,7 +95,7 @@ public class Main {
         board[2] = new Cards(2, "Obshtestven trezor");
         board[3] = new Property("Bulevard Carigradsko Shose", 60, 30, 3);
         board[4] = new Taxes(4, "Danuk pechalba");
-        board[5] = new Cards(5, "Gara Sofia");
+        board[5] = new Gara("Gara Sofia", 100, 40, 5);
         board[6] = new Property("Ulica Opulchenska", 100, 50, 6);
         board[7] = new Cards(7, "Luck");
         board[8] = new Property("Bulevard Slivnica", 100, 50, 8);
@@ -99,7 +105,7 @@ public class Main {
         board[12] = new NEK(12, "NEK");
         board[13] = new Property("Ulica Pirotska", 140, 70, 13);
         board[14] = new Property("Bulevard Hristo Botev", 160, 80, 14);
-        board[15] = new Cards(15, "Gara Plovdiv");
+        board[15] = new Gara("Gara Plovdiv", 100, 40, 15);
         board[16] = new Property("Bulevard Evlogi Georgiev", 180, 90, 16);
         board[17] = new Cards(17, "Obshtestven trezor");
         board[18] = new Property("Orlov most", 180, 90, 18);
@@ -109,7 +115,7 @@ public class Main {
         board[22]=new Cards(22,"Luck");
         board[23]=new Property("Ulica Shipka",220,110,23);
         board[24]=new Property("Ulica Oborishte",240,120,24);
-        board[25]=new Cards(25,"Gara Varna");
+        board[25]=new Gara("Gara Varna", 100, 40, 25);
         board[26]=new Property("Bulevard Dondukov",260,130,26);
         board[27]=new Property("Bulevard Patriarh Evtimiy",260,130,27);
         board[28]=new ViK(28,"VIK");
@@ -119,7 +125,7 @@ public class Main {
         board[32] =new Property("Ulica Graf Ignatiev",300,150,32);
         board[33]=new Cards(33,"Obshtestven trezor");
         board[34]=new Property("Bulevard Car Osvoboditel",320,160,34);
-        board[35]=new Cards(35,"Gara Burgas");
+        board[35]=new Gara("Gara Burgas", 100, 40,35);
         board[36]=new Cards(36,"Luck");
         board[37]=new Property("Bulevard Vitosha",350,175,37);
         board[38]=new Taxes(38,"Super danuk");

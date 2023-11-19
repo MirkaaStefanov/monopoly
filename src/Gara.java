@@ -1,16 +1,13 @@
 import java.util.Scanner;
 
-public class Property implements Square, Propertiable {
-    private String name;
+public class Gara implements Square, Propertiable{
     private int position;
+    private String name;
     private Player owner;
     private int priceForBuying;
     private int priceForRent;
     private boolean ifItsBought = false;
-    private int ownerEntered = 0;
-    Scanner sc = new Scanner(System.in);
-
-    public Property(String name, int priceForBuying, int priceForRent, int position) {
+    public Gara(String name, int priceForBuying, int priceForRent, int position) {
         this.name = name;
         this.priceForBuying = priceForBuying;
         this.priceForRent = priceForRent;
@@ -42,31 +39,57 @@ public class Property implements Square, Propertiable {
         this.priceForRent = priceForRent;
     }
 
-    public boolean isIfItsRent() {
+    public boolean isIfItsBought() {
         return ifItsBought;
     }
 
-    public void setIfItsRent(boolean ifItsRent) {
-        this.ifItsBought = ifItsRent;
+    public void setIfItsBought(boolean ifItsBought) {
+        this.ifItsBought = ifItsBought;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
         return name;
     }
+
+    @Override
+    public void firstPlay(Player player, Player[]players, Square[] board) {
+        Scanner sc = new Scanner(System.in);
+        if (!ifItsBought) {
+            System.out.println("Would you like to buy " + this.name + " (yes/no)");
+            String respond = sc.next();
+            if (respond.equalsIgnoreCase("Yes")) {
+                buy(player);
+            }
+        }else{
+            rent(player);
+        }
+    }
+
     @Override
     public void buy(Player player) {
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
         this.ifItsBought = true;
         this.owner = player;
-        player.makePropertyArrayList().add(new Property(this.name, this.priceForBuying, this.priceForRent, this.position));
+        player.makePropertyArrayList().add(new Gara(this.name,this.priceForBuying,this.priceForRent,this.position));
         player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");
     }
 
     @Override
     public void rent(Player player) {
-
         if (!(player == this.owner)) {
 
             if (this.owner.getIfPlayerIsInJail()==false) {
@@ -84,33 +107,5 @@ public class Property implements Square, Propertiable {
                 System.out.println("You are lucky! The owner is in jail and you shouldn't pay rent");
             }
         }
-    }
-
-    @Override
-    public void firstPlay(Player player, Player[]players, Square[] board) {
-        if (!ifItsBought) {
-            System.out.println("Would you like to buy " + this.name + " (yes/no)");
-            String respond = sc.next();
-            if (respond.equalsIgnoreCase("Yes")) {
-                buy(player);
-            }
-        } else if(ifItsBought && player==owner && ownerEntered==0){
-           ownerEntered=1;
-            System.out.println("This is yours");
-        }else{
-            rent(player);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Property{" +
-                "name='" + name + '\'' +
-                ", position=" + position +
-                ", owner=" + owner +
-                ", priceForBuying=" + priceForBuying +
-                ", priceForRent=" + priceForRent +
-                ", ifItsBought=" + ifItsBought +
-                '}';
     }
 }

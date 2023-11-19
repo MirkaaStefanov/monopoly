@@ -34,7 +34,7 @@ public class Parking implements Square{
     }
 
     @Override
-    public void firstPlay(Player player) {
+    public void firstPlay(Player player, Player[]players, Square[] board) {
         System.out.println("You are in parking. You don't have to do anything");
     }
 }

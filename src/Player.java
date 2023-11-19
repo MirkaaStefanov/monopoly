@@ -6,13 +6,14 @@ public class Player {
     private int currentMoney;
     private static int firstPosition = 0;
     private int currentPosition;
-    public ArrayList<Property> properties;
+    public ArrayList<Propertiable> properties;
     private int currentNumOfProperties ;
     private int numOfPropertiesAtStart = 0;
     private boolean ifPlayerIsInJail = false;
     private int stayInJail;
     private boolean doNotGet200FromStart= false;
     private boolean moveToTheNearest = false;
+    private boolean paidToEscapeJail = false;
 
 
     public Player(String name) {
@@ -22,9 +23,17 @@ public class Player {
         this.currentNumOfProperties =this.numOfPropertiesAtStart;
         this.properties = makePropertyArrayList();
     }
-    public ArrayList<Property> makePropertyArrayList () {
-        ArrayList<Property> propertiesOfPlayer = new ArrayList<>();
+    public ArrayList<Propertiable> makePropertyArrayList () {
+        ArrayList<Propertiable> propertiesOfPlayer = new ArrayList<>();
         return propertiesOfPlayer;
+    }
+
+    public boolean getPaidToEscapeJail() {
+        return paidToEscapeJail;
+    }
+
+    public void setPaidToEscapeJail(boolean paidToEscapeJail) {
+        this.paidToEscapeJail = paidToEscapeJail;
     }
 
     public boolean getMoveToTheNearest() {
