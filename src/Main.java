@@ -80,9 +80,14 @@ public class Main {
         Player[] players = new Player[numOfPlayers];
         for (int i = 0; i < players.length; i++) {
             System.out.print("Enter name of player " + (i + 1) + ": ");
+            if (sc.hasNextInt()) {
+                System.out.println("Error: Please enter a valid name, not a number.");
+                sc.next();
+                i--;
+                continue;
+            }
 
             String name = sc.nextLine();
-
             players[i] = new Player(name);
         }
         return players;
