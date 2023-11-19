@@ -77,22 +77,40 @@ public class Cards implements Square {
                     }
                     break;
                 case 8:
+                    System.out.println("You escaped jail without paying.");
+                    player.setIfPlayerIsInJail(false);
                     break;
                 case 9:
+                    System.out.println("You pay 30$ for every property");
+                    player.setCurrentMoney(player.getCurrentMoney()-30*player.getNumOfproperties());
                     break;
                 case 10:
+                    System.out.println("Maturity of vacation fund, you receive 100$");
+                    player.setCurrentMoney(player.getCurrentMoney()+100);
                     break;
                 case 11:
+                    System.out.println("Continue to the start and receive 200$");
+                    player.setCurrentPosition(0);
+                    player.setCurrentMoney(player.getCurrentMoney()+200);
                     break;
                 case 12:
+                    System.out.println("Bank error in your favor, you receive 200$");
+                    player.setCurrentMoney(player.getCurrentMoney()+200);
                     break;
                 case 13:
+                    System.out.println("You win second place in a beauty competition, you receive 10$");
+                    player.setCurrentMoney(player.getCurrentMoney()+10);
                     break;
                 case 14:
+                    System.out.println("Doctor fee, pay 50$");
                     break;
                 case 15:
+                    System.out.println("You receive an inheritance of 100$");
+                    player.setCurrentMoney(player.getCurrentMoney()+100);
                     break;
                 case 16:
+                    System.out.println("You sale stocks and receive 50$");
+                    player.setCurrentMoney(player.getCurrentMoney()+50);
                     break;
             }
         } else if (this.name.equalsIgnoreCase("Luck")) {
