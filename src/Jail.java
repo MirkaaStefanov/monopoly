@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Jail implements Square {
@@ -46,6 +47,7 @@ public class Jail implements Square {
             player.setPaidToEscapeJail(true);
             player.setCurrentMoney(player.getCurrentMoney() - 50);
             System.out.println("You paid 50$, but you still miss a move");
+            player.setIfPlayerIsInJail(false);
         } else {
             System.out.println("You are gonna miss 3 moves");
         }

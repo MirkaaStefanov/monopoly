@@ -10,7 +10,7 @@ public class Main {
         Square[] board = createBoard();
         int counter = 0;
         while (true) {
-            if(counter!=0) {
+            if (counter != 0) {
                 sc.nextLine();
             }
             counter++;
@@ -19,33 +19,10 @@ public class Main {
                 if (counter > 0) {
                     System.out.println();
                 }
-                if (players[i].getIfPlayerIsInJail()) {
-                    if (players[i].getPaidToEscapeJail()) {
-                        System.out.println("You (" + players[i].getName() + ") paid to escape but you still miss a move");
-                        players[i].setIfPlayerIsInJail(false);
-                        continue;
-                    }
-                    System.out.println("You (" + players[i].getName() + ") are in Jail");
-                    System.out.println("But, If you role two same dice you are gonna escape the jail");
-                    System.out.print("press enter to roll the dice");
-
-                    sc.nextLine();
-                    int diceInJail1 = random.nextInt(6) + 1;
-                    int diceInJail2 = random.nextInt(6) + 1;
-                    System.out.println("You rolled " + diceInJail1 + " and " + diceInJail2);
-                    if (diceInJail1 == diceInJail2) {
-                        System.out.println("You escaped the jail");
-                    } else {
-                        players[i].setStayInJail(players[i].getStayInJail() + 1);
-                        if (players[i].getStayInJail() == 3) {
-                            System.out.println("You escaped the jail, next time you will be able to roll the dice");
-                            players[i].setIfPlayerIsInJail(false);
-                            continue;
-                        }
-                        System.out.println("After " + (3 - players[i].getStayInJail()) + " moves, you will be able to roll the dice");
-                        continue;
-                    }
+                if (jailInMain(players[i]) == false) {
+                    continue;
                 }
+
                 System.out.print(players[i].getName() + ", press enter to roll the dice");
                 if (i == players.length) {
                     sc.nextLine();
@@ -56,12 +33,9 @@ public class Main {
                 System.out.println("You rolled " + dice1 + " and " + dice2);
                 int sumOfDice = dice1 + dice2;
                 int boardPosition = players[i].getCurrentPosition() + sumOfDice;
-                if (boardPosition >=40) {
+                if (boardPosition >= 40) {
                     boardPosition = boardPosition - 40;
-                    if (players[i].getDoNotGet200FromStart() == false) {
-                        players[i].setCurrentMoney(players[i].getCurrentMoney() + 200);
-                        System.out.println("You (" + players[i].getName() + ") receive 200$ because you went through the START");
-                    }
+                    startInMain(players[i]);
                 }
                 players[i].setCurrentPosition(boardPosition);
                 System.out.println("Your position is " + players[i].getCurrentPosition() + ", you are in square: " + board[boardPosition].getName());
@@ -144,6 +118,52 @@ public class Main {
         return board;
     }
 
+    public static boolean jailInMain(Player player) {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        if (player.getIfPlayerIsInJail()) {
+            if (player.getPaidToEscapeJail()) {
+                System.out.println("You (" + player.getName() + ") paid to escape but you still miss a move");
+                player.setIfPlayerIsInJail(false);
+                return false;
+            }
+            System.out.println("You (" + player.getName() + ") are in Jail");
+            System.out.println("But, If you role two same dice you are gonna escape the jail");
+            System.out.print("press enter to roll the dice");
+
+            sc.nextLine();
+            int diceInJail1 = random.nextInt(6) + 1;
+            int diceInJail2 = random.nextInt(6) + 1;
+            System.out.println("You rolled " + diceInJail1 + " and " + diceInJail2);
+            if (diceInJail1 == diceInJail2) {
+                System.out.println("You escaped the jail");
+                player.setIfPlayerIsInJail(false);
+                return true;
+            } else {
+                player.setStayInJail(player.getStayInJail() + 1);
+                if (player.getStayInJail() == 3) {
+                    System.out.println("You escaped the jail, next time you will be able to roll the dice");
+                    player.setIfPlayerIsInJail(false);
+                    return false;
+
+                }
+                System.out.println("After " + (3 - player.getStayInJail()) + " moves, you will be able to roll the dice");
+                return false;
+
+            }
+        }
+        return true;
+    }
+
+    public static void startInMain(Player player) {
+        if (player.getDoNotGet200FromStart() == false) {
+            player.setCurrentMoney(player.getCurrentMoney() + 200);
+            System.out.println("You (" + player.getName() + ") receive 200$ because you went through the START");
+        }else{
+            System.out.println("You went through the START, but you can't get 200$ because you have a prohibition");
+        }
+    }
+
     private static void printState(Player[] players) {
         int counter = 1;
         for (Player player : players) {
@@ -167,7 +187,7 @@ public class Main {
                 System.out.printf("%40s%n", "none");
 
             if (player.getIfPlayerIsInJail())
-                System.out.printf("%30s%n","In jail");
+                System.out.printf("%30s%n", "In jail");
 
             System.out.println("--------------------------------------------------");
         }

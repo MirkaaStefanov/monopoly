@@ -102,7 +102,7 @@ public class Property implements Square, Propertiable {
             }
         } else if(ifItsBought && player==owner && ownerEntered==0){
            ownerEntered=1;
-            System.out.println("This is yours, would you like to pay "+(this.priceForBuying-20)+", and the rent will be "+this.priceForBuying+"$ (yes/no");
+            System.out.println("This is yours, would you like to pay "+(this.priceForBuying-20)+", and the rent will be "+this.priceForBuying+"$ (yes/no)");
             String answer = sc.next();
             if(answer.equalsIgnoreCase("Yes")){
                 setPriceForRent(getPriceForBuying());
