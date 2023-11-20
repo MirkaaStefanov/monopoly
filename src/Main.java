@@ -10,8 +10,10 @@ public class Main {
         Square[] board = createBoard();
         int counter = 0;
         while (true) {
+            if(counter!=0) {
+                sc.nextLine();
+            }
             counter++;
-            sc.nextLine();
             printState(players);
             for (int i = 0; i < players.length; i++) {
                 if (counter > 0) {
@@ -37,6 +39,7 @@ public class Main {
                         players[i].setStayInJail(players[i].getStayInJail() + 1);
                         if (players[i].getStayInJail() == 3) {
                             System.out.println("You escaped the jail, next time you will be able to roll the dice");
+                            players[i].setIfPlayerIsInJail(false);
                             continue;
                         }
                         System.out.println("After " + (3 - players[i].getStayInJail()) + " moves, you will be able to roll the dice");
@@ -44,15 +47,16 @@ public class Main {
                     }
                 }
                 System.out.print(players[i].getName() + ", press enter to roll the dice");
-
-                sc.nextLine();
+                if (i == players.length) {
+                    sc.nextLine();
+                }
                 sc.nextLine();
                 int dice1 = random.nextInt(6) + 1;
                 int dice2 = random.nextInt(6) + 1;
-
+                System.out.println("You rolled " + dice1 + " and " + dice2);
                 int sumOfDice = dice1 + dice2;
                 int boardPosition = players[i].getCurrentPosition() + sumOfDice;
-                if (boardPosition > 40) {
+                if (boardPosition >=40) {
                     boardPosition = boardPosition - 40;
                     if (players[i].getDoNotGet200FromStart() == false) {
                         players[i].setCurrentMoney(players[i].getCurrentMoney() + 200);
@@ -60,7 +64,6 @@ public class Main {
                     }
                 }
                 players[i].setCurrentPosition(boardPosition);
-                System.out.println("You rolled " + dice1 + " and " + dice2);
                 System.out.println("Your position is " + players[i].getCurrentPosition() + ", you are in square: " + board[boardPosition].getName());
 
 
@@ -164,7 +167,7 @@ public class Main {
                 System.out.printf("%40s%n", "none");
 
             if (player.getIfPlayerIsInJail())
-                System.out.println("In jail");
+                System.out.printf("%30s%n","In jail");
 
             System.out.println("--------------------------------------------------");
         }
