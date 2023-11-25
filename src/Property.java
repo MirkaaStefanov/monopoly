@@ -54,12 +54,14 @@ public class Property implements Square, Propertiable {
     public String getName() {
         return name;
     }
-    @Override
-    public void buy(Player player) {
+     @Override
+    public void buy(Player player, Square[] board) {
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
         this.ifItsBought = true;
         this.owner = player;
-        player.makePropertyArrayList().add(new Property(this.name, this.priceForBuying, this.priceForRent, this.position));
+      // player.makePropertyArrayList().add((Propertiable) board[this.position]);
+        // player.makePropertyArrayList().add(new Property(this.name,this.priceForBuying,this.priceForRent,this.position));
+         player.properties.add((Propertiable)board[this.position]);
         player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");
     }
@@ -98,7 +100,7 @@ public class Property implements Square, Propertiable {
             System.out.println("Would you like to buy " + this.name +" price "+this.priceForBuying+ "$ (yes/no)");
             String respond = sc.next();
             if (respond.equalsIgnoreCase("Yes")) {
-                buy(player);
+                buy(player, board);
             }
         } else if(ifItsBought && player==owner && ownerEntered==0){
            ownerEntered=1;

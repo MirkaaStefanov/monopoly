@@ -28,6 +28,12 @@ public class Player {
         return propertiesOfPlayer;
     }
 
+
+
+    public void setProperties(ArrayList<Propertiable> properties) {
+        this.properties = properties;
+    }
+
     public boolean getPaidToEscapeJail() {
         return paidToEscapeJail;
     }
