@@ -18,6 +18,11 @@ public class Property implements Square, Propertiable {
 
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
     public Player getOwner() {
         return owner;
     }
@@ -25,7 +30,7 @@ public class Property implements Square, Propertiable {
     public void setOwner(Player owner) {
         this.owner = owner;
     }
-
+    @Override
     public int getPriceForBuying() {
         return priceForBuying;
     }
@@ -49,6 +54,14 @@ public class Property implements Square, Propertiable {
     public void setIfItsRent(boolean ifItsRent) {
         this.ifItsBought = ifItsRent;
     }
+    public boolean isIfItsBought() {
+        return ifItsBought;
+    }
+
+    @Override
+    public void setIfItsBought(boolean ifItsBought) {
+        this.ifItsBought = ifItsBought;
+    }
 
     @Override
     public String getName() {
@@ -61,7 +74,7 @@ public class Property implements Square, Propertiable {
         this.owner = player;
       // player.makePropertyArrayList().add((Propertiable) board[this.position]);
         // player.makePropertyArrayList().add(new Property(this.name,this.priceForBuying,this.priceForRent,this.position));
-         player.properties.add((Propertiable)board[this.position]);
+         player.properties.add((Property)board[this.position]);
         player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");
     }
@@ -88,11 +101,6 @@ public class Property implements Square, Propertiable {
         }
     }
 
-    @Override
-    public void sell(Player player) {
-
-    }
-
 
     @Override
     public void firstPlay(Player player, Player[]players, Square[] board) {
@@ -109,6 +117,7 @@ public class Property implements Square, Propertiable {
             if(answer.equalsIgnoreCase("Yes")){
                 setPriceForRent(getPriceForBuying());
                 player.setCurrentMoney(player.getCurrentMoney()-(this.priceForBuying-20));
+                setPriceForBuying(getPriceForBuying()-100);
             }
         }else{
             rent(player);

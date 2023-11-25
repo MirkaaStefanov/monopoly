@@ -40,8 +40,15 @@ public class Main {
                 players[i].setCurrentPosition(boardPosition);
                 System.out.println("Your position is " + players[i].getCurrentPosition() + ", you are in square: " + board[boardPosition].getName());
 
-
                 board[boardPosition].firstPlay(players[i], players, board);
+
+                if (players[i].properties.size() > 0) {
+                    System.out.println("Do you want to sell your property(yes/no)");
+                    String answer = sc.next();
+                    if (answer.equalsIgnoreCase("yes")) {
+                        players[i].sell();
+                    }
+                }
             }
         }
     }

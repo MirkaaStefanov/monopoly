@@ -48,6 +48,7 @@ public class Jail implements Square {
             player.setCurrentMoney(player.getCurrentMoney() - 50);
             System.out.println("You paid 50$, but you still miss a move");
             player.setIfPlayerIsInJail(false);
+            player.setPaidToEscapeJail(true);
         } else {
             System.out.println("You are gonna miss 3 moves");
         }

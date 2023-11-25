@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
     private String name;
@@ -120,6 +121,18 @@ public class Player {
 
     public void setDoNotGet200FromStart(boolean doNotGet200FromStart) {
         this.doNotGet200FromStart = doNotGet200FromStart;
+    }
+
+    public void sell() {
+        Scanner sc = new Scanner(System.in);
+        for (int i = 0; i < properties.size() ; i++) {
+            System.out.println((i+1)+") "+properties.get(i).getName()+" $"+properties.get(i).getPriceForBuying());
+        }
+        System.out.print("Enter which one you wanna sell: ");
+        int propertyForSelling = Integer.parseInt(sc.next());
+        properties.get(propertyForSelling-1).setIfItsBought(false);
+        setCurrentMoney(getFirstMoney()+properties.get(propertyForSelling-1).getPriceForBuying());
+        System.out.println("You sold it and received $"+properties.get(propertyForSelling-1).getPriceForBuying());
     }
 
     @Override

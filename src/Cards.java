@@ -62,9 +62,8 @@ public class Cards implements Square {
                 case 7:
                     System.out.println("You have a birthday and receive 10$ from every player");
                     for (int i = 0; i < players.length; i++) {
-                        int recievenMoney = 10 * (players.length - 1);
                         if (players[i] != player) {
-                            player.setCurrentMoney(player.getCurrentMoney() + recievenMoney);
+                            player.setCurrentMoney(player.getCurrentMoney() +10);
                             players[i].setCurrentMoney(players[i].getCurrentMoney() - 10);
                         }
                     }
@@ -134,10 +133,10 @@ public class Cards implements Square {
                     break;
                 case 4:
                     System.out.println("You have been chosen to be chairman. You must pay everyone 50$");
+
                     for (int i = 0; i < players.length; i++) {
-                        int givenMoney = 50 * (players.length - 1);
                         if (players[i] != player) {
-                            player.setCurrentMoney(player.getCurrentMoney() - givenMoney);
+                            player.setCurrentMoney(player.getCurrentMoney() - 50);
                             players[i].setCurrentMoney(players[i].getCurrentMoney() +50);
                         }
                     }
@@ -202,6 +201,7 @@ public class Cards implements Square {
                             player.setCurrentPosition(i);
                             player.setMoveToTheNearest(true);
                             board[i].firstPlay(player,players,board);
+                            break;
                         }
                     }
                     break;
@@ -212,6 +212,7 @@ public class Cards implements Square {
                             player.setCurrentPosition(i);
                             player.setMoveToTheNearest(true);
                             board[i].firstPlay(player, players, board);
+                            break;
                         }
                     }
                     break;

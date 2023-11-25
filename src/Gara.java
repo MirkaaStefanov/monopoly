@@ -22,7 +22,7 @@ public class Gara implements Square, Propertiable{
     public void setOwner(Player owner) {
         this.owner = owner;
     }
-
+    @Override
     public int getPriceForBuying() {
         return priceForBuying;
     }
@@ -42,7 +42,7 @@ public class Gara implements Square, Propertiable{
     public boolean isIfItsBought() {
         return ifItsBought;
     }
-
+    @Override
     public void setIfItsBought(boolean ifItsBought) {
         this.ifItsBought = ifItsBought;
     }
@@ -85,7 +85,7 @@ public class Gara implements Square, Propertiable{
         this.owner = player;
         // player.makePropertyArrayList().add((Propertiable) board[this.position]);
        // player.makePropertyArrayList().add(new Gara(this.name,this.priceForBuying,this.priceForRent,this.position));
-        player.properties.add((Propertiable)board[this.position]);
+        player.properties.add((Gara)board[this.position]);
         player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");
     }
@@ -111,8 +111,4 @@ public class Gara implements Square, Propertiable{
         }
     }
 
-    @Override
-    public void sell(Player player) {
-
-    }
 }
