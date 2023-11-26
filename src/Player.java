@@ -133,6 +133,7 @@ public class Player {
         properties.get(propertyForSelling-1).setIfItsBought(false);
         setCurrentMoney(getFirstMoney()+properties.get(propertyForSelling-1).getPriceForBuying());
         System.out.println("You sold it and received $"+properties.get(propertyForSelling-1).getPriceForBuying());
+        System.out.println();
     }
 
     @Override
