@@ -15,6 +15,7 @@ public class Player {
     private boolean doNotGet200FromStart= false;
     private boolean moveToTheNearest = false;
     private boolean paidToEscapeJail = false;
+    private boolean lose=false;
 
 
     public Player(String name) {
@@ -29,7 +30,13 @@ public class Player {
         return propertiesOfPlayer;
     }
 
+    public boolean getLose() {
+        return lose;
+    }
 
+    public void setLose(boolean lose) {
+        this.lose = lose;
+    }
 
     public void setProperties(ArrayList<Propertiable> properties) {
         this.properties = properties;

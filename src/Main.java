@@ -19,6 +19,9 @@ public class Main {
                 if (counter > 0) {
                     System.out.println();
                 }
+                if(players[i].getLose()==true){
+                    continue;
+                }
                 if (jailInMain(players[i]) == false) {
                     continue;
                 }
@@ -42,13 +45,24 @@ public class Main {
 
                 board[boardPosition].firstPlay(players[i], players, board);
 
-                if (players[i].properties.size() > 0) {
-                    System.out.println("Do you want to sell your property(yes/no)");
+               /* if (players[i].properties.size() > 0) {
+                    if(players[i].getCurrentMoney()<0){
+                        System.out.print("You must sell your property otherwise you gonna lose(yes/no)");
+                    }else {
+                        System.out.println("Do you want to sell your property(yes/no)");
+                    }
                     String answer = sc.next();
                     if (answer.equalsIgnoreCase("yes")) {
                         players[i].sell();
                     }
-                }
+                }if(players[i].getCurrentMoney()<0){
+                    players[i].setLose(true);
+                }*/
+                sellOrSetLoseInMain(players[i]);
+
+            }
+            if (loseAndFinishTheGame(players)==true){
+                break;
             }
         }
     }
@@ -169,6 +183,38 @@ public class Main {
         }else{
             System.out.println("You went through the START, but you can't get 200$ because you have a prohibition");
         }
+    }
+    public static void sellOrSetLoseInMain(Player player) {
+        Scanner sc = new Scanner(System.in);
+        if (player.properties.size() > 0) {
+            if(player.getCurrentMoney()<0){
+                System.out.print("You must sell your property otherwise you gonna lose(yes/no)");
+            }else {
+                System.out.println("Do you want to sell your property(yes/no)");
+            }
+            String answer = sc.next();
+            if (answer.equalsIgnoreCase("yes")) {
+                player.sell();
+            }
+        }if(player.getCurrentMoney()<0){
+            player.setLose(true);
+        }
+    }
+    public static boolean loseAndFinishTheGame(Player[] players) {
+        int loserCount = 0;
+        for (int i = 0; i < players.length ; i++) {
+            if(players[i].getLose()==true){
+                loserCount++;
+            }
+        }
+        if(loserCount==players.length-1){
+            for (int i = 0; i < players.length; i++) {
+                if(players[i].getLose()==false) {
+                    System.out.println("Player (" + players[i].getName() + ") WINS!");
+                    return true;
+                }
+            }
+        }return false;
     }
 
     private static void printState(Player[] players) {
