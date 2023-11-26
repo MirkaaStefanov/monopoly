@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Cards implements Square {
@@ -28,7 +29,7 @@ public class Cards implements Square {
 
 
     @Override
-    public void firstPlay(Player player, Player[]players, Square[] board) {
+    public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
 
         Random cardsRandom = new Random();
         if (this.name.equalsIgnoreCase("Obshtestven trezor")) {
@@ -61,10 +62,10 @@ public class Cards implements Square {
                     break;
                 case 7:
                     System.out.println("You have a birthday and receive 10$ from every player");
-                    for (int i = 0; i < players.length; i++) {
-                        if (players[i] != player) {
+                    for (int i = 0; i < players.size(); i++) {
+                        if (players.get(i) != player) {
                             player.setCurrentMoney(player.getCurrentMoney() +10);
-                            players[i].setCurrentMoney(players[i].getCurrentMoney() - 10);
+                            players.get(i).setCurrentMoney(players.get(i).getCurrentMoney() - 10);
                         }
                     }
                     break;
@@ -134,10 +135,10 @@ public class Cards implements Square {
                 case 4:
                     System.out.println("You have been chosen to be chairman. You must pay everyone 50$");
 
-                    for (int i = 0; i < players.length; i++) {
-                        if (players[i] != player) {
+                    for (int i = 0; i < players.size(); i++) {
+                        if (players.get(i) != player) {
                             player.setCurrentMoney(player.getCurrentMoney() - 50);
-                            players[i].setCurrentMoney(players[i].getCurrentMoney() +50);
+                            players.get(i).setCurrentMoney(players.get(i).getCurrentMoney() +50);
                         }
                     }
                     break;

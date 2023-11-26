@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -36,7 +37,7 @@ public class Jail implements Square {
     }
 
     @Override
-    public void firstPlay(Player player, Player[]players, Square[] board) {
+    public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
         Scanner sc = new Scanner(System.in);
         player.setIfPlayerIsInJail(true);
         player.setStayInJail(0);
@@ -44,11 +45,9 @@ public class Jail implements Square {
         System.out.println("Do you want to pay 50$ to escape jail (yes/no)");
         String answer = sc.next();
         if (answer.equalsIgnoreCase("yes")) {
-            player.setPaidToEscapeJail(true);
             player.setCurrentMoney(player.getCurrentMoney() - 50);
-            System.out.println("You paid 50$, but you still miss a move");
+            System.out.println("You escaped the jail");
             player.setIfPlayerIsInJail(false);
-            player.setPaidToEscapeJail(true);
         } else {
             System.out.println("You are gonna miss 3 moves");
         }

@@ -14,7 +14,6 @@ public class Player {
     private int stayInJail;
     private boolean doNotGet200FromStart= false;
     private boolean moveToTheNearest = false;
-    private boolean paidToEscapeJail = false;
     private boolean lose=false;
 
 
@@ -40,14 +39,6 @@ public class Player {
 
     public void setProperties(ArrayList<Propertiable> properties) {
         this.properties = properties;
-    }
-
-    public boolean getPaidToEscapeJail() {
-        return paidToEscapeJail;
-    }
-
-    public void setPaidToEscapeJail(boolean paidToEscapeJail) {
-        this.paidToEscapeJail = paidToEscapeJail;
     }
 
     public boolean getMoveToTheNearest() {
@@ -138,9 +129,11 @@ public class Player {
         System.out.print("Enter which one you wanna sell: ");
         int propertyForSelling = Integer.parseInt(sc.next());
         properties.get(propertyForSelling-1).setIfItsBought(false);
+        currentNumOfProperties-=1;
         setCurrentMoney(getFirstMoney()+properties.get(propertyForSelling-1).getPriceForBuying());
         System.out.println("You sold it and received $"+properties.get(propertyForSelling-1).getPriceForBuying());
-        System.out.println();
+        properties.remove(propertyForSelling-1);
+
     }
 
     @Override

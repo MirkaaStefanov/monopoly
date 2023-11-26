@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Taxes implements Square {
     private int position;
     private String name;
@@ -32,7 +34,7 @@ public class Taxes implements Square {
         this.name = name;
     }
     @Override
-    public void firstPlay(Player player, Player[]players, Square[] board) {
+    public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
         if (this.name.equalsIgnoreCase("Danuk pechalba")) {
             player.setCurrentMoney(player.getCurrentMoney() - 200);
             System.out.println("You paid Danuk pechalba(Tax Profit) 200$");

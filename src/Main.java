@@ -6,7 +6,7 @@ public class Main {
     public static void play() {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
-        Player[] players = players();
+        ArrayList<Player> players = players();
         Square[] board = createBoard();
         int counter = 0;
         while (true) {
@@ -15,19 +15,19 @@ public class Main {
             }
             counter++;
             printState(players);
-            for (int i = 0; i < players.length; i++) {
+            for (int i = 0; i < players.size(); i++) {
                 if (counter > 0) {
                     System.out.println();
                 }
-                if(players[i].getLose()==true){
+                if (players.get(i).getLose() == true) {
                     continue;
                 }
-                if (jailInMain(players[i]) == false) {
+                if (jailInMain(players.get(i)) == false) {
                     continue;
                 }
 
-                System.out.print(players[i].getName() + ", press enter to roll the dice");
-                if (i == players.length) {
+                System.out.print(players.get(i).getName() + ", press enter to roll the dice");
+                if (i == players.size()) {
                     sc.nextLine();
                 }
                 sc.nextLine();
@@ -35,39 +35,29 @@ public class Main {
                 int dice2 = random.nextInt(6) + 1;
                 System.out.println("You rolled " + dice1 + " and " + dice2);
                 int sumOfDice = dice1 + dice2;
-                int boardPosition = players[i].getCurrentPosition() + sumOfDice;
+                int boardPosition = players.get(i).getCurrentPosition() + sumOfDice;
                 if (boardPosition >= 40) {
                     boardPosition = boardPosition - 40;
-                    startInMain(players[i]);
+                    startInMain(players.get(i));
                 }
-                players[i].setCurrentPosition(boardPosition);
-                System.out.println("Your position is " + players[i].getCurrentPosition() + ", you are in square: " + board[boardPosition].getName());
+                players.get(i).setCurrentPosition(boardPosition);
+                System.out.println("Your position is " + players.get(i).getCurrentPosition() + ", you are in square: " + board[boardPosition].getName());
 
-                board[boardPosition].firstPlay(players[i], players, board);
+                board[boardPosition].firstPlay(players.get(i), players, board);
 
-               /* if (players[i].properties.size() > 0) {
-                    if(players[i].getCurrentMoney()<0){
-                        System.out.print("You must sell your property otherwise you gonna lose(yes/no)");
-                    }else {
-                        System.out.println("Do you want to sell your property(yes/no)");
-                    }
-                    String answer = sc.next();
-                    if (answer.equalsIgnoreCase("yes")) {
-                        players[i].sell();
-                    }
-                }if(players[i].getCurrentMoney()<0){
-                    players[i].setLose(true);
-                }*/
-                sellOrSetLoseInMain(players[i]);
-
+                sellOrSetLoseInMain(players, players.get(i));
+                if (players.size() == 1) {
+                    break;
+                }
             }
-            if (loseAndFinishTheGame(players)==true){
+            if (players.size() == 1) {
+                System.out.println("Player ("+players.get(0).getName()+") WINS!");
                 break;
             }
         }
     }
 
-    public static Player[] players() {
+    public static ArrayList<Player> players() {
         Scanner sc = new Scanner(System.in);
         int numOfPlayers;
         System.out.print("How many players will play (2-4): ");
@@ -83,12 +73,12 @@ public class Main {
                 System.out.print("Please enter integer: ");
             }
         }
-        Player[] players = new Player[numOfPlayers];
-        for (int i = 0; i < players.length; i++) {
+        ArrayList<Player> players = new ArrayList<>();
+        for (int i = 0; i < numOfPlayers; i++) {
             System.out.print("Enter name of player " + (i + 1) + ": ");
 
             String name = sc.nextLine();
-            players[i] = new Player(name);
+            players.add(i, new Player(name));
         }
         return players;
     }
@@ -143,11 +133,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
         if (player.getIfPlayerIsInJail()) {
-            if (player.getPaidToEscapeJail()) {
-                System.out.println("You (" + player.getName() + ") paid to escape but you still miss a move");
-                player.setIfPlayerIsInJail(false);
-                return false;
-            }
             System.out.println("You (" + player.getName() + ") are in Jail");
             System.out.println("But, If you role two same dice you are gonna escape the jail");
             System.out.print("press enter to roll the dice");
@@ -180,44 +165,36 @@ public class Main {
         if (player.getDoNotGet200FromStart() == false) {
             player.setCurrentMoney(player.getCurrentMoney() + 200);
             System.out.println("You (" + player.getName() + ") receive 200$ because you went through the START");
-        }else{
+        } else {
             System.out.println("You went through the START, but you can't get 200$ because you have a prohibition");
         }
     }
-    public static void sellOrSetLoseInMain(Player player) {
+
+    public static void sellOrSetLoseInMain(ArrayList<Player> players, Player player) {
         Scanner sc = new Scanner(System.in);
         if (player.properties.size() > 0) {
-            if(player.getCurrentMoney()<0){
+            if (player.getCurrentMoney() < 0) {
                 System.out.print("You must sell your property otherwise you gonna lose(yes/no)");
-            }else {
+            } else {
                 System.out.println("Do you want to sell your property(yes/no)");
             }
             String answer = sc.next();
             if (answer.equalsIgnoreCase("yes")) {
                 player.sell();
             }
-        }if(player.getCurrentMoney()<0){
-            player.setLose(true);
         }
-    }
-    public static boolean loseAndFinishTheGame(Player[] players) {
-        int loserCount = 0;
-        for (int i = 0; i < players.length ; i++) {
-            if(players[i].getLose()==true){
-                loserCount++;
+        if (player.getCurrentMoney() < 0) {
+            System.out.println("Player (" + player.getName() + ") LOST!");
+            for (int i = 0; i < player.properties.size(); i++) {
+                player.properties.get(i).setIfItsBought(false);
             }
+            player.properties.clear();
+            players.remove(player);
         }
-        if(loserCount==players.length-1){
-            for (int i = 0; i < players.length; i++) {
-                if(players[i].getLose()==false) {
-                    System.out.println("Player (" + players[i].getName() + ") WINS!");
-                    return true;
-                }
-            }
-        }return false;
     }
 
-    private static void printState(Player[] players) {
+
+    private static void printState(ArrayList<Player> players) {
         int counter = 1;
         for (Player player : players) {
             System.out.println("--------------------------------------------------");

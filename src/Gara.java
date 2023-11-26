@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gara implements Square, Propertiable{
@@ -65,7 +66,7 @@ public class Gara implements Square, Propertiable{
     }
 
     @Override
-    public void firstPlay(Player player, Player[]players, Square[] board) {
+    public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
         Scanner sc = new Scanner(System.in);
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name + " (yes/no)");

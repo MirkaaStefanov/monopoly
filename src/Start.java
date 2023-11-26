@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Start implements Square {
     private int position;
     private String name;
@@ -33,7 +35,7 @@ public class Start implements Square {
     }
 
     @Override
-    public void firstPlay(Player player, Player[]players, Square[] board) {
+    public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
         System.out.println("You are at start");
     }
 

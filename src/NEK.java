@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class NEK implements Square{
     private int position;
     private String name;
@@ -34,7 +36,7 @@ public class NEK implements Square{
 
 
     @Override
-    public void firstPlay(Player player, Player[]players, Square[] board) {
+    public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
         player.setCurrentMoney(player.getCurrentMoney() - 150);
         System.out.println("You paid Tax NEK 150$");
     }
