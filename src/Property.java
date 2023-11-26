@@ -8,7 +8,8 @@ public class Property implements Square, Propertiable {
     private int priceForBuying;
     private int priceForRent;
     private boolean ifItsBought = false;
-    private int ownerEntered = 0;
+
+    private boolean maxed = false;
     Scanner sc = new Scanner(System.in);
 
     public Property(String name, int priceForBuying, int priceForRent, int position) {
@@ -17,6 +18,14 @@ public class Property implements Square, Propertiable {
         this.priceForRent = priceForRent;
         this.position = position;
 
+    }
+
+    public boolean getMaxed() {
+        return maxed;
+    }
+
+    public void setMaxed(boolean maxed) {
+        this.maxed = maxed;
     }
 
     public void setName(String name) {
@@ -105,17 +114,20 @@ public class Property implements Square, Propertiable {
 
     @Override
     public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
+        if(player==this.owner && getMaxed()==true){
+            System.out.println("This is yours and it's maxed");
+        }
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name +" price "+this.priceForBuying+ "$ (yes/no)");
             String respond = sc.next();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player, board);
             }
-        } else if(ifItsBought && player==owner && ownerEntered==0){
-           ownerEntered=1;
+        } else if(ifItsBought && player==owner && getMaxed()==false){
             System.out.println("This is yours, would you like to pay "+(this.priceForBuying-20)+", and the rent will be "+this.priceForBuying+"$ (yes/no)");
             String answer = sc.next();
             if(answer.equalsIgnoreCase("Yes")){
+                setMaxed(true);
                 setPriceForRent(getPriceForBuying());
                 player.setCurrentMoney(player.getCurrentMoney()-(this.priceForBuying-20));
                 setPriceForBuying(getPriceForBuying()-100);

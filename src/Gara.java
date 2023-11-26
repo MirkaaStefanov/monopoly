@@ -68,8 +68,11 @@ public class Gara implements Square, Propertiable{
     @Override
     public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
         Scanner sc = new Scanner(System.in);
+        if(player==this.owner){
+            System.out.println("This is yours");
+        }
         if (!ifItsBought) {
-            System.out.println("Would you like to buy " + this.name + " (yes/no)");
+            System.out.println("Would you like to buy " + this.name +", "+this.priceForBuying +"$(yes/no)");
             String respond = sc.next();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player,board);

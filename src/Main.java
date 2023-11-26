@@ -50,6 +50,7 @@ public class Main {
                     break;
                 }
             }
+            System.out.println();
             if (players.size() == 1) {
                 System.out.println("Player ("+players.get(0).getName()+") WINS!");
                 break;
@@ -174,7 +175,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         if (player.properties.size() > 0) {
             if (player.getCurrentMoney() < 0) {
-                System.out.print("You must sell your property otherwise you gonna lose(yes/no)");
+                System.out.print("You must sell your property that cost at least "+Math.abs(player.getCurrentMoney())+"$ otherwise you gonna lose(yes/no)");
             } else {
                 System.out.println("Do you want to sell your property(yes/no)");
             }

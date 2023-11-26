@@ -128,6 +128,7 @@ public class Cards implements Square {
                         player.setCurrentPosition(11);
                         board[11].firstPlay(player,players,board);
                         player.setCurrentMoney(player.getCurrentMoney() + 200);
+                        System.out.println("You continued by start");
                     } else {
                         System.out.println("You are at plushtat Makedonia");
                     }
@@ -150,6 +151,7 @@ public class Cards implements Square {
                     } else if (player.getCurrentPosition() > 6) {
                         player.setCurrentPosition(5);
                         board[5].firstPlay(player,players,board);
+                        System.out.println("You continued by start");
                         player.setCurrentMoney(player.getCurrentMoney() + 200);
                     } else {
                         System.out.println("You are at gara Sofia");
@@ -190,6 +192,7 @@ public class Cards implements Square {
                     } else if (player.getCurrentPosition() > 20) {
                         player.setCurrentPosition(19);
                         board[19].firstPlay(player,players,board);
+                        System.out.println("You continued by start");
                         player.setCurrentMoney(player.getCurrentMoney() + 200);
                     } else {
                         System.out.println("You are at Bulevard Bulgaria");

@@ -130,7 +130,7 @@ public class Player {
         int propertyForSelling = Integer.parseInt(sc.next());
         properties.get(propertyForSelling-1).setIfItsBought(false);
         currentNumOfProperties-=1;
-        setCurrentMoney(getFirstMoney()+properties.get(propertyForSelling-1).getPriceForBuying());
+        setCurrentMoney(getCurrentMoney()+properties.get(propertyForSelling-1).getPriceForBuying());
         System.out.println("You sold it and received $"+properties.get(propertyForSelling-1).getPriceForBuying());
         properties.remove(propertyForSelling-1);
 
