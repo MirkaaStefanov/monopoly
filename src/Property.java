@@ -130,7 +130,7 @@ public class Property implements Square, Propertiable {
                 setMaxed(true);
                 setPriceForRent(getPriceForBuying());
                 player.setCurrentMoney(player.getCurrentMoney()-(this.priceForBuying-20));
-                setPriceForBuying(getPriceForBuying()-100);
+                setPriceForBuying(getPriceForBuying() + (this.priceForBuying-20) );
             }
         }else{
             rent(player);

@@ -38,21 +38,36 @@ public class Main {
                 int boardPosition = players.get(i).getCurrentPosition() + sumOfDice;
                 if (boardPosition >= 40) {
                     boardPosition = boardPosition - 40;
+                    System.out.println(players.get(i).getCurrentPosition()+" -> "+boardPosition);
                     startInMain(players.get(i));
+                }else {
+                    System.out.println(players.get(i).getCurrentPosition() + " -> " + boardPosition);
                 }
+
                 players.get(i).setCurrentPosition(boardPosition);
                 System.out.println("Your position is " + players.get(i).getCurrentPosition() + ", you are in square: " + board[boardPosition].getName());
 
                 board[boardPosition].firstPlay(players.get(i), players, board);
 
                 sellOrSetLoseInMain(players, players.get(i));
-                if (players.size() == 1) {
+
+                int losers = 0;
+                for (int j = 0; j < players.size() ; j++) {
+                    if(players.get(i).getLose()==true){
+                        losers+=1;
+                    }
+                }
+                if (losers==players.size()-1) {
                     break;
                 }
             }
             System.out.println();
-            if (players.size() == 1) {
-                System.out.println("Player ("+players.get(0).getName()+") WINS!");
+            System.out.println();
+            for (int i = 0; i <players.size() ; i++) {
+                if(players.get(i).getLose()==false){
+                    System.out.println("Player ("+players.get(0).getName()+") WINS!");
+                    break;
+                }
                 break;
             }
         }
@@ -190,7 +205,7 @@ public class Main {
                 player.properties.get(i).setIfItsBought(false);
             }
             player.properties.clear();
-            players.remove(player);
+            player.setLose(true);
         }
     }
 

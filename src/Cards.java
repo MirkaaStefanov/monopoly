@@ -33,7 +33,7 @@ public class Cards implements Square {
 
         Random cardsRandom = new Random();
         if (this.name.equalsIgnoreCase("Obshtestven trezor")) {
-            int obshtestvenTrezorRandom = cardsRandom.nextInt(16) + 1;
+            int obshtestvenTrezorRandom = cardsRandom.nextInt(15) + 1;
             System.out.println("Your Obshtestven trezor card is:");
             switch (obshtestvenTrezorRandom) {
                 case 1:
@@ -70,38 +70,35 @@ public class Cards implements Square {
                     }
                     break;
                 case 8:
-                    System.out.println("You escaped jail without paying.");
-                    player.setIfPlayerIsInJail(false);
-                    break;
-                case 9:
                     System.out.println("You pay 30$ for every property");
                     player.setCurrentMoney(player.getCurrentMoney() - 30 * player.getNumOfproperties());
                     break;
-                case 10:
+                case 9:
                     System.out.println("Maturity of vacation fund, you receive 100$");
                     player.setCurrentMoney(player.getCurrentMoney() + 100);
                     break;
-                case 11:
+                case 10:
                     System.out.println("Continue to the start and receive 200$");
                     player.setCurrentPosition(0);
                     player.setCurrentMoney(player.getCurrentMoney() + 200);
                     break;
-                case 12:
+                case 11:
                     System.out.println("Bank error in your favor, you receive 200$");
                     player.setCurrentMoney(player.getCurrentMoney() + 200);
                     break;
-                case 13:
+                case 12:
                     System.out.println("You win second place in a beauty competition, you receive 10$");
                     player.setCurrentMoney(player.getCurrentMoney() + 10);
                     break;
-                case 14:
+                case 13:
                     System.out.println("Doctor fee, pay 50$");
+                    player.setCurrentMoney(player.getCurrentMoney() - 50);
                     break;
-                case 15:
+                case 14:
                     System.out.println("You receive an inheritance of 100$");
                     player.setCurrentMoney(player.getCurrentMoney() + 100);
                     break;
-                case 16:
+                case 15:
                     System.out.println("You sale stocks and receive 50$");
                     player.setCurrentMoney(player.getCurrentMoney() + 50);
                     break;
@@ -111,7 +108,7 @@ public class Cards implements Square {
             System.out.println("Your luck card is:");
             switch (luckRandom) {
                 case 1:
-                    System.out.println("Go to Boqna");
+                    System.out.println("Go to Boqna -> 39");
                     player.setCurrentPosition(39);
                     board[39].firstPlay(player,players,board);
                     break;
@@ -120,7 +117,7 @@ public class Cards implements Square {
                     player.setIfPlayerIsInJail(false);
                     break;
                 case 3:
-                    System.out.println("Go to ploshtat Makedonia");
+                    System.out.println("Go to ploshtat Makedonia -> 11");
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 12) {
                         player.setCurrentPosition(11);
                         board[11].firstPlay(player,players,board);
@@ -144,7 +141,7 @@ public class Cards implements Square {
                     }
                     break;
                 case 5:
-                    System.out.println("Go to gara Sofia");
+                    System.out.println("Go to gara Sofia -> 5");
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 6) {
                         player.setCurrentPosition(5);
                         board[5].firstPlay(player,players,board);
@@ -185,7 +182,7 @@ public class Cards implements Square {
                     player.setCurrentMoney(player.getCurrentMoney() + 50);
                     break;
                 case 12:
-                    System.out.println("Go to Bulevard Bulgaria");
+                    System.out.println("Go to Bulevard Bulgaria -> 19");
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 20) {
                         player.setCurrentPosition(19);
                         board[19].firstPlay(player,players,board);
