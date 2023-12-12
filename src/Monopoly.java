@@ -242,7 +242,7 @@ public class Monopoly {
             if(respond.equalsIgnoreCase("yes") || respond.equalsIgnoreCase("no")) {
                 break;
             }else{
-                System.out.print("Please write \" YES \" or \" No \" : ");
+                System.out.print("Please write \" Yes \" or \" No \" : ");
             }
         }
         return respond;
