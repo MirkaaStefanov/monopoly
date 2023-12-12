@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Player {
     private String name;
-    private static int firstMoney = 1500;
+    private static int firstMoney = 200;
     private int currentMoney;
     private static int firstPosition = 0;
     private int currentPosition;
@@ -122,12 +122,31 @@ public class Player {
     }
 
     public void sell() {
+        int propertyForSelling;
+
         Scanner sc = new Scanner(System.in);
         for (int i = 0; i < properties.size() ; i++) {
             System.out.println((i+1)+") "+properties.get(i).getName()+" $"+properties.get(i).getPriceForBuying());
         }
         System.out.print("Enter which one you wanna sell: ");
-        int propertyForSelling = Integer.parseInt(sc.next());
+
+        while (true) {
+            try {
+                propertyForSelling = Integer.parseInt(sc.next());
+                if(propertyForSelling>0 && propertyForSelling<=properties.size()){
+                    break;
+                }else{
+                    if(properties.size()==1){
+                        System.out.print("You have only one property, so enter \"1\" :");
+                    }else{
+                        System.out.print("Please enter number between 1 and "+properties.size()+ ": ");
+                    }
+                }
+            }catch (Exception e){
+                System.out.print("Please enter integer: ");
+            }
+        }
+
         properties.get(propertyForSelling-1).setIfItsBought(false);
         currentNumOfProperties-=1;
         setCurrentMoney(getCurrentMoney()+properties.get(propertyForSelling-1).getPriceForBuying());

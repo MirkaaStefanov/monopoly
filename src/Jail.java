@@ -38,12 +38,11 @@ public class Jail implements Square {
 
     @Override
     public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
-        Scanner sc = new Scanner(System.in);
         player.setIfPlayerIsInJail(true);
         player.setStayInJail(0);
         player.setCurrentPosition(10);
         System.out.println("Do you want to pay 50$ to escape jail (yes/no)");
-        String answer = sc.next();
+        String answer = Main.respond();
         if (answer.equalsIgnoreCase("yes")) {
             player.setCurrentMoney(player.getCurrentMoney() - 50);
             System.out.println("You escaped the jail");

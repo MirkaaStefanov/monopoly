@@ -73,7 +73,7 @@ public class Gara implements Square, Propertiable{
         }
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name +", "+this.priceForBuying +"$(yes/no)");
-            String respond = sc.next();
+            String respond = Main.respond();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player,board);
             }

@@ -210,14 +210,13 @@ public class Main {
     }
 
     public static void sellOrSetLoseInMain(ArrayList<Player> players, Player player) {
-        Scanner sc = new Scanner(System.in);
         if (player.properties.size() > 0) {
             if (player.getCurrentMoney() < 0) {
-                System.out.print("You must sell your property that cost at least " + Math.abs(player.getCurrentMoney()) + "$ otherwise you gonna lose(yes/no)");
+                System.out.println("You must sell your property that cost at least " + Math.abs(player.getCurrentMoney()) + "$ otherwise you gonna lose(yes/no)");
             } else {
                 System.out.println("Do you want to sell your property(yes/no)");
             }
-            String answer = sc.next();
+            String answer = respond();
             if (answer.equalsIgnoreCase("yes")) {
                 player.sell();
             }
@@ -261,6 +260,19 @@ public class Main {
 
             System.out.println("--------------------------------------------------");
         }
+    }
+    public static String respond () {
+        Scanner sc = new Scanner(System.in);
+        String respond;
+        while (true) {
+            respond = sc.next();
+            if(respond.equalsIgnoreCase("yes") || respond.equalsIgnoreCase("no")) {
+                break;
+            }else{
+                System.out.print("Please write \" YES \" or \" No \" : ");
+            }
+        }
+        return respond;
     }
 
     public static void main(String[] args) {

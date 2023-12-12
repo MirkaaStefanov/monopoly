@@ -114,18 +114,19 @@ public class Property implements Square, Propertiable {
 
     @Override
     public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
+
         if(player==this.owner && getMaxed()==true){
             System.out.println("This is yours and it's maxed");
         }
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name +" price "+this.priceForBuying+ "$ (yes/no)");
-            String respond = sc.next();
+           String respond = Main.respond();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player, board);
             }
         } else if(ifItsBought && player==owner && getMaxed()==false){
             System.out.println("This is yours, would you like to pay "+(this.priceForBuying-20)+", and the rent will be "+this.priceForBuying+"$ (yes/no)");
-            String answer = sc.next();
+            String answer = Main.respond();
             if(answer.equalsIgnoreCase("Yes")){
                 setMaxed(true);
                 setPriceForRent(getPriceForBuying());
