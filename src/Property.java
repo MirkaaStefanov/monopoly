@@ -32,14 +32,6 @@ public class Property implements Square, Propertiable {
         this.name = name;
     }
 
-
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
     @Override
     public int getPriceForBuying() {
         return priceForBuying;
@@ -49,23 +41,8 @@ public class Property implements Square, Propertiable {
         this.priceForBuying = priceForBuying;
     }
 
-    public int getPriceForRent() {
-        return priceForRent;
-    }
-
     public void setPriceForRent(int priceForRent) {
         this.priceForRent = priceForRent;
-    }
-
-    public boolean isIfItsRent() {
-        return ifItsBought;
-    }
-
-    public void setIfItsRent(boolean ifItsRent) {
-        this.ifItsBought = ifItsRent;
-    }
-    public boolean isIfItsBought() {
-        return ifItsBought;
     }
 
     @Override
@@ -82,8 +59,6 @@ public class Property implements Square, Propertiable {
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
         this.ifItsBought = true;
         this.owner = player;
-      // player.makePropertyArrayList().add((Propertiable) board[this.position]);
-        // player.makePropertyArrayList().add(new Property(this.name,this.priceForBuying,this.priceForRent,this.position));
          player.properties.add((Property)board[this.position]);
         player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");
@@ -120,13 +95,13 @@ public class Property implements Square, Propertiable {
         }
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name +" price "+this.priceForBuying+ "$ (yes/no)");
-           String respond = Main.respond();
+           String respond = Monopoly.respond();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player, board);
             }
         } else if(ifItsBought && player==owner && getMaxed()==false){
             System.out.println("This is yours, would you like to pay "+(this.priceForBuying-20)+", and the rent will be "+this.priceForBuying+"$ (yes/no)");
-            String answer = Main.respond();
+            String answer = Monopoly.respond();
             if(answer.equalsIgnoreCase("Yes")){
                 setMaxed(true);
                 setPriceForRent(getPriceForBuying());

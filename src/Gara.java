@@ -16,44 +16,14 @@ public class Gara implements Square, Propertiable{
 
     }
 
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
     @Override
     public int getPriceForBuying() {
         return priceForBuying;
     }
 
-    public void setPriceForBuying(int priceForBuying) {
-        this.priceForBuying = priceForBuying;
-    }
-
-    public int getPriceForRent() {
-        return priceForRent;
-    }
-
-    public void setPriceForRent(int priceForRent) {
-        this.priceForRent = priceForRent;
-    }
-
-    public boolean isIfItsBought() {
-        return ifItsBought;
-    }
     @Override
     public void setIfItsBought(boolean ifItsBought) {
         this.ifItsBought = ifItsBought;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
     }
 
     public void setName(String name) {
@@ -67,13 +37,13 @@ public class Gara implements Square, Propertiable{
 
     @Override
     public void firstPlay(Player player, ArrayList<Player> players, Square[] board) {
-        Scanner sc = new Scanner(System.in);
+
         if(player==this.owner){
             System.out.println("This is yours");
         }
         if (!ifItsBought) {
             System.out.println("Would you like to buy " + this.name +", "+this.priceForBuying +"$(yes/no)");
-            String respond = Main.respond();
+            String respond = Monopoly.respond();
             if (respond.equalsIgnoreCase("Yes")) {
                 buy(player,board);
             }
@@ -87,8 +57,7 @@ public class Gara implements Square, Propertiable{
         player.setCurrentMoney(player.getCurrentMoney() - this.priceForBuying);
         this.ifItsBought = true;
         this.owner = player;
-        // player.makePropertyArrayList().add((Propertiable) board[this.position]);
-       // player.makePropertyArrayList().add(new Gara(this.name,this.priceForBuying,this.priceForRent,this.position));
+
         player.properties.add((Gara)board[this.position]);
         player.setNumOfproperties(player.getNumOfproperties()+1);
         System.out.println("You bought \"" + this.name + "\"");

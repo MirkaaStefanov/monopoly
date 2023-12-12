@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class Monopoly {
     public static void play() {
         Scanner sc = new Scanner(System.in);
         Random random = new Random();
@@ -59,15 +59,6 @@ public class Main {
                 if (players.size() == 1) {
                     break;
                 }
-               /* for (int j = 0; j < players.size() ; j++) {
-                    if(players.get(i).getLose()==true){
-                        losers+=1;
-                    }
-                }
-                if (losers==players.size()-1) {
-                    break;
-                }*/
-
             }
             if (players.size() == 1) {
                 System.out.println();
@@ -75,24 +66,6 @@ public class Main {
                 System.out.println("Player (" + players.get(0).getName() + ") WINS!");
                 break;
             }
-
-            /*if(losers==players.size()-1) {
-                for (int i = 0; i < players.size(); i++) {
-                    if (players.get(i).getLose() == false) {
-                        System.out.println();
-                        System.out.println();
-                        System.out.println("Player (" + players.get(0).getName() + ") WINS!");
-                        break;
-                    }
-                }
-                break;
-            }else{
-                for (int i = 0; i <players.size() ; i++) {
-                    if(players.get(i).getLose()==true){
-                        players.remove(players.get(i));
-                    }
-                }
-            }*/
         }
     }
 

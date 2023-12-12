@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Jail implements Square {
     private int position;
@@ -10,14 +8,6 @@ public class Jail implements Square {
     public Jail(int position, String name) {
         this.position = position;
         this.name = name;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
     }
 
     public String getName() {
@@ -42,7 +32,7 @@ public class Jail implements Square {
         player.setStayInJail(0);
         player.setCurrentPosition(10);
         System.out.println("Do you want to pay 50$ to escape jail (yes/no)");
-        String answer = Main.respond();
+        String answer = Monopoly.respond();
         if (answer.equalsIgnoreCase("yes")) {
             player.setCurrentMoney(player.getCurrentMoney() - 50);
             System.out.println("You escaped the jail");

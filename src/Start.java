@@ -5,14 +5,6 @@ public class Start implements Square {
     private String name;
     private Player player;
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
     public String getName() {
         return name;
     }

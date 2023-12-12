@@ -37,10 +37,6 @@ public class Player {
         this.lose = lose;
     }
 
-    public void setProperties(ArrayList<Propertiable> properties) {
-        this.properties = properties;
-    }
-
     public boolean getMoveToTheNearest() {
         return moveToTheNearest;
     }
@@ -81,28 +77,12 @@ public class Player {
         this.name = name;
     }
 
-    public int getFirstMoney() {
-        return firstMoney;
-    }
-
-    public void setFirstMoney(int firstMoney) {
-        this.firstMoney = firstMoney;
-    }
-
     public int getCurrentMoney() {
         return currentMoney;
     }
 
     public void setCurrentMoney(int currentMoney) {
         this.currentMoney = currentMoney;
-    }
-
-    public int getFirstPosition() {
-        return firstPosition;
-    }
-
-    public void setFirstPosition(int firstPosition) {
-        this.firstPosition = firstPosition;
     }
 
     public int getCurrentPosition() {
