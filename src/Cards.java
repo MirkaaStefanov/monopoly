@@ -113,10 +113,6 @@ public class Cards implements Square {
                     board[39].firstPlay(player,players,board);
                     break;
                 case 2:
-                    System.out.println("You escaped jail without paying.");
-                    player.setIfPlayerIsInJail(false);
-                    break;
-                case 3:
                     System.out.println("Go to ploshtat Makedonia -> 11");
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 12) {
                         player.setCurrentPosition(11);
@@ -130,7 +126,7 @@ public class Cards implements Square {
                         System.out.println("You are at plushtat Makedonia");
                     }
                     break;
-                case 4:
+                case 3:
                     System.out.println("You have been chosen to be chairman. You must pay everyone 50$");
 
                     for (int i = 0; i < players.size(); i++) {
@@ -140,7 +136,7 @@ public class Cards implements Square {
                         }
                     }
                     break;
-                case 5:
+                case 4:
                     System.out.println("Go to gara Sofia -> 5");
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 6) {
                         player.setCurrentPosition(5);
@@ -154,34 +150,34 @@ public class Cards implements Square {
                         System.out.println("You are at gara Sofia");
                     }
                     break;
-                case 6:
+                case 5:
                     System.out.println("Maturity of your home loan, you receive 150$");
                     player.setCurrentMoney(player.getCurrentMoney() + 150);
                     break;
-                case 7:
+                case 6:
                     System.out.println("Go back 3 spaces");
                     player.setCurrentPosition(player.getCurrentPosition() - 3);
                     board[player.getCurrentPosition()].firstPlay(player,players,board);
                     break;
-                case 8:
+                case 7:
                     System.out.println("Speeding ticket. It costs: 15$");
                     player.setCurrentMoney(player.getCurrentMoney() - 15);
                     break;
-                case 9:
+                case 8:
                     System.out.println("You go straight to jail");
                     player.setIfPlayerIsInJail(true);
                     board[10].firstPlay(player,players, board);
                     break;
-                case 10:
+                case 9:
                     System.out.println("Go to start and earn 200$");
                     player.setCurrentMoney(player.getCurrentMoney() + 200);
                     player.setCurrentPosition(0);
                     break;
-                case 11:
+                case 10:
                     System.out.println("The bank sends you a dividend of 50$");
                     player.setCurrentMoney(player.getCurrentMoney() + 50);
                     break;
-                case 12:
+                case 11:
                     System.out.println("Go to Bulevard Bulgaria -> 19");
                     if (player.getCurrentPosition() >= 0 && player.getCurrentPosition() < 20) {
                         player.setCurrentPosition(19);
@@ -195,7 +191,7 @@ public class Cards implements Square {
                         System.out.println("You are at Bulevard Bulgaria");
                     }
                     break;
-                case 13:
+                case 12:
                     System.out.println("Go to the nearest Property, if it is bought you have to pay double rent");
                     for (int i = player.getCurrentPosition(); i <board.length ; i++) {
                         if(board[i]instanceof Property){
@@ -206,7 +202,7 @@ public class Cards implements Square {
                         }
                     }
                     break;
-                case 14:
+                case 13:
                     System.out.println("Go to the nearest Gara, if it is bought you have to pay double rent");
                     for (int i = player.getCurrentPosition(); i <board.length ; i++) {
                         if(board[i]instanceof Gara){

@@ -38,9 +38,9 @@ public class Main {
                 int boardPosition = players.get(i).getCurrentPosition() + sumOfDice;
                 if (boardPosition >= 40) {
                     boardPosition = boardPosition - 40;
-                    System.out.println(players.get(i).getCurrentPosition()+" -> "+boardPosition);
+                    System.out.println(players.get(i).getCurrentPosition() + " -> " + boardPosition);
                     startInMain(players.get(i));
-                }else {
+                } else {
                     System.out.println(players.get(i).getCurrentPosition() + " -> " + boardPosition);
                 }
 
@@ -49,27 +49,50 @@ public class Main {
 
                 board[boardPosition].firstPlay(players.get(i), players, board);
 
+                int playersSizeBeforeSellOrSetLoseMethod = players.size();
+
                 sellOrSetLoseInMain(players, players.get(i));
 
-                int losers = 0;
-                for (int j = 0; j < players.size() ; j++) {
+                if(players.size()==playersSizeBeforeSellOrSetLoseMethod-1){
+                    i=i-1;
+                }
+                if (players.size() == 1) {
+                    break;
+                }
+               /* for (int j = 0; j < players.size() ; j++) {
                     if(players.get(i).getLose()==true){
                         losers+=1;
                     }
                 }
                 if (losers==players.size()-1) {
                     break;
-                }
+                }*/
+
             }
-            System.out.println();
-            System.out.println();
-            for (int i = 0; i <players.size() ; i++) {
-                if(players.get(i).getLose()==false){
-                    System.out.println("Player ("+players.get(0).getName()+") WINS!");
-                    break;
-                }
+            if (players.size() == 1) {
+                System.out.println();
+                System.out.println();
+                System.out.println("Player (" + players.get(0).getName() + ") WINS!");
                 break;
             }
+
+            /*if(losers==players.size()-1) {
+                for (int i = 0; i < players.size(); i++) {
+                    if (players.get(i).getLose() == false) {
+                        System.out.println();
+                        System.out.println();
+                        System.out.println("Player (" + players.get(0).getName() + ") WINS!");
+                        break;
+                    }
+                }
+                break;
+            }else{
+                for (int i = 0; i <players.size() ; i++) {
+                    if(players.get(i).getLose()==true){
+                        players.remove(players.get(i));
+                    }
+                }
+            }*/
         }
     }
 
@@ -190,7 +213,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         if (player.properties.size() > 0) {
             if (player.getCurrentMoney() < 0) {
-                System.out.print("You must sell your property that cost at least "+Math.abs(player.getCurrentMoney())+"$ otherwise you gonna lose(yes/no)");
+                System.out.print("You must sell your property that cost at least " + Math.abs(player.getCurrentMoney()) + "$ otherwise you gonna lose(yes/no)");
             } else {
                 System.out.println("Do you want to sell your property(yes/no)");
             }
@@ -205,6 +228,7 @@ public class Main {
                 player.properties.get(i).setIfItsBought(false);
             }
             player.properties.clear();
+            players.remove(player);
             player.setLose(true);
         }
     }
