@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Player {
     private String name;
-    private static int firstMoney = 200;
+    private static int firstMoney = 1500;
     private int currentMoney;
     private static int firstPosition = 0;
     private int currentPosition;
